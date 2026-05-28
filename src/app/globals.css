@@ -15,72 +15,70 @@
 }
 
 body {
-  background-color: #09090b;
+  background-color: #09090b; /* bg-zinc-950 */
   color: #f4f4f5;
   overflow-x: hidden;
+  /* %5 opasiteli Dot Matrix Deseni */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
 }
 
-/* Ambient Arka Plan Parıltıları */
+/* Arka Plan Sabit Köşe Parlamaları (Ambient Glows) */
 .ambient-glow-1 {
-  position: absolute;
-  top: 10%;
-  left: 15%;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(0,0,0,0) 70%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(0,0,0,0) 70%);
   pointer-events: none;
-  filter: blur(40px);
+  filter: blur(120px);
   z-index: 0;
-  animation: pulse-glow 8s infinite alternate;
 }
 
 .ambient-glow-2 {
-  position: absolute;
-  bottom: 20%;
-  right: 10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(0,0,0,0) 70%);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(0,0,0,0) 70%);
   pointer-events: none;
-  filter: blur(40px);
+  filter: blur(120px);
   z-index: 0;
-  animation: pulse-glow 12s infinite alternate-reverse;
 }
 
-@keyframes pulse-glow {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
-  100% { transform: scale(1.15) translate(15px, -15px); opacity: 1; }
+/* Pürüzsüz Scroll ve Geçişler */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Özel İnce Kaydırma Çubuğu */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #09090b;
-}
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+/* Scroll Animasyon Sınıfları (Fade-in-up) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Cam Efektli Kart Tasarımı */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cam Efektli Bento Kart Tasarımı */
 .glass-card {
   background: rgba(18, 18, 20, 0.65);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(39, 39, 42, 0.5);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .glass-card:hover {
   border-color: rgba(168, 85, 247, 0.35);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px -10px rgba(168, 85, 247, 0.12);
+  box-shadow: 0 12px 30px -10px rgba(168, 85, 247, 0.15);
 }
 
-/* Pürüzsüz Geçişler */
-html {
-  scroll-behavior: smooth;
-}

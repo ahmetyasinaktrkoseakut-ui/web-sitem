@@ -23,6 +23,26 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
@@ -141,7 +161,7 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-6 relative z-10 pt-16">
         
         {/* Hero Section */}
-        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center">
+        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center reveal">
           <div className="space-y-8 max-w-3xl mx-auto">
 
             {/* Ortalanmış Profil Fotoğrafı ve Neon Parlama Hareketi */}
@@ -214,7 +234,7 @@ export default function Home() {
         </section>
 
         {/* Hakkımda (About) Section */}
-        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16">
+        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
           <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-6">Biyografi</h3>
           
           <div className="max-w-3xl space-y-6 text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
@@ -228,7 +248,7 @@ export default function Home() {
         </section>
 
         {/* Projeler Section */}
-        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16">
+        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
           <div className="space-y-2 mb-10">
             <h4 className="text-3xl font-bold tracking-tight text-white">Çalışmalarım</h4>
             <p className="text-zinc-400 text-sm font-light leading-relaxed">
@@ -236,17 +256,17 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Projeler Grid Yapısı */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Projeler Bento Grid Yapısı */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* 1. Fırtına AI */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-2">
               <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
                 <Image 
                   src="/firtina-ai.png" 
                   alt="Fırtına AI"
-                  width={500}
-                  height={300}
+                  width={600}
+                  height={350}
                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
@@ -261,13 +281,13 @@ export default function Home() {
             </div>
 
             {/* 2. ESOGÜ ABYS */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-1">
               <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
                 <Image 
                   src="/esogu-abys.png" 
                   alt="ESOGÜ ABYS Akreditasyon Sistemi"
-                  width={500}
-                  height={300}
+                  width={400}
+                  height={350}
                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
@@ -282,7 +302,7 @@ export default function Home() {
             </div>
 
             {/* 3. Kurulan İşletmeler & Platformlar */}
-            <div className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-2 space-y-6">
+            <div className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-3 space-y-6 hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-accent-purple shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                   <Layers className="w-6 h-6" />
@@ -339,63 +359,80 @@ export default function Home() {
         </section>
 
         {/* Yetkinlikler (Skills) Section */}
-        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16">
+        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
           <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-4">Yetkinlikler</h3>
           <h4 className="text-3xl font-bold text-white tracking-tight mb-10">Kullandığım Teknolojiler</h4>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Yetenekler Bento Grid Yapısı */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            {/* Web Geliştirme Yetenekleri */}
-            <div className="space-y-4">
-              <h5 className="font-mono text-xs text-accent-purple border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                <Code2 className="w-3.5 h-3.5" />
-                Full-Stack Web Geliştirme
-              </h5>
-              
-              <div className="space-y-3">
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Hızlı ve Dinamik Web Arayüzleri (React & Next.js)</span>
-                </div>
+            {/* Kart 1: Full-Stack Web Geliştirme (Geniş Kart) */}
+            <div className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
+              <div className="space-y-4">
+                <h5 className="font-mono text-xs text-accent-purple border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
+                  <Code2 className="w-3.5 h-3.5" />
+                  Full-Stack Web Geliştirme
+                </h5>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">React & Next.js Arayüzleri</span>
+                  </div>
 
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Modern Tasarım ve Görsel Kodlama (Tailwind CSS)</span>
-                </div>
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Modern Tailwind CSS Arayüzleri</span>
+                  </div>
 
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Güvenli Veritabanı Altyapısı (Supabase & Firebase)</span>
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner sm:col-span-2">
+                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Supabase & Firebase Veritabanı Altyapısı</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Yapay Zeka & Otomasyon Yetenekleri */}
-            <div className="space-y-4">
-              <h5 className="font-mono text-xs text-accent-blue border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                <Cpu className="w-3.5 h-3.5" />
-                Yapay Zeka & Otomasyon
-              </h5>
+            {/* Kart 2: Yapay Zeka & Otomasyon (Dar Kart) */}
+            <div className="glass-card rounded-2xl p-6 md:col-span-1 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
+              <div className="space-y-4">
+                <h5 className="font-mono text-xs text-accent-blue border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
+                  <Cpu className="w-3.5 h-3.5" />
+                  Yapay Zeka & Otomasyon
+                </h5>
 
-              <div className="space-y-3">
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Yapay Zeka Yönetimi ve Entegrasyonu (Prompt Eng.)</span>
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Prompt Engineering</span>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Akıllı AI Agents Sistemleri</span>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Akıllı Sistemler ve Süreç Otomasyonu (AI Agents)</span>
-                </div>
+            {/* Kart 3: AI İçerik Üretimi ve Sistemler (Tam Genişlik Kart) */}
+            <div className="glass-card rounded-2xl p-6 md:col-span-3 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
+              <div className="space-y-4">
+                <h5 className="font-mono text-xs text-zinc-400 border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
+                  AI Medya & Entegrasyonlar
+                </h5>
 
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Sistemler Arası Veri Aktarımı (API ve Entegrasyon)</span>
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">AI İçerik Üretimi (Görsel, İşitsel ve Metin)</span>
+                  </div>
 
-                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
-                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">AI İçerik Üretimi (Görsel, İşitsel ve Metin)</span>
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                    <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
+                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">API Entegrasyonları ve Süreç Otomasyonu</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -404,7 +441,7 @@ export default function Home() {
         </section>
 
         {/* İletişim (Contact) Section */}
-        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16">
+        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
           <h4 className="text-3xl font-bold text-white tracking-tight mb-4">İletişim</h4>
           <p className="text-zinc-400 font-light mb-10 max-w-lg leading-relaxed text-sm sm:text-base">
             Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
