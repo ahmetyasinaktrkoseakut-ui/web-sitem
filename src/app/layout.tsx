@@ -20,7 +20,7 @@ const alexBrush = Alex_Brush({
 
 
 export const metadata: Metadata = {
-  title: 'Ahmet Yasin Aktürk | Full-Stack Geliştirici & Yapay Zeka Üreticisi',
+  title: 'Ahmet Yasin Aktürk',
   description: 'Kullanıcı odaklı modern web platformları kuruyor, Next.js ve yapay zeka entegrasyonları ile yüksek performanslı dijital çözümler tasarlıyorum.',
   authors: [{ name: "Ahmet Yasin Aktürk" }],
   keywords: ['Ahmet Yasin Aktürk', 'Full-Stack Geliştirici', 'Yapay Zeka', 'Next.js', 'React', 'Fırtına AI', 'Yapay Zeka Üreticisi', 'Eskişehir Geliştirici', 'React Developer', 'AI Developer'],
