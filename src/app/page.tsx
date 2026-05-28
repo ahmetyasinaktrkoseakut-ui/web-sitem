@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { 
   Terminal, 
   Mail, 
@@ -260,7 +261,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* 1. Fırtına AI */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-2">
+            <Link href="/firtina-ai" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-2 cursor-pointer">
               <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
                 <Image 
                   src="/firtina-ai.png" 
@@ -296,10 +297,10 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* 2. ESOGÜ ABYS */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-1">
+            <Link href="/esogu-abys" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-1 cursor-pointer">
               <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
                 <Image 
                   src="/esogu-abys.png" 
@@ -317,7 +318,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* 3. Kurulan İşletmeler & Platformlar */}
             <div className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-3 space-y-6 hover:-translate-y-1 transition-all duration-300">
