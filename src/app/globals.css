@@ -5,6 +5,7 @@
   --color-foreground: #f4f4f5;
   --font-sans: var(--font-sans), system-ui, sans-serif;
   --font-mono: var(--font-mono), monospace;
+  --font-script: var(--font-script), cursive;
   --color-accent-blue: #06b6d4;
   --color-accent-purple: #a855f7;
 }

@@ -74,9 +74,12 @@ export default function Home() {
       {/* Navigasyon Header */}
       <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800/40 bg-zinc-950/65 backdrop-blur-md transition-all duration-300">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#hero" className="flex items-center">
-            <span className="text-base sm:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400 drop-shadow-[0_2px_4px_rgba(255,255,255,0.15)] hover:scale-[1.02] transition-transform duration-300 uppercase font-sans">
-              AHMET YASİN AKTÜRK
+          <a href="#hero" className="flex flex-col items-start leading-none group py-1 select-none">
+            <span className="text-xs sm:text-sm font-black tracking-[0.1em] text-transparent [-webkit-text-stroke:0.8px_#a855f7] drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] font-sans uppercase">
+              AHMET YASİN
+            </span>
+            <span className="text-[10px] sm:text-xs font-script text-white/90 self-end -mt-0.5 ml-3 transform -rotate-2">
+              Aktürk
             </span>
           </a>
           
@@ -137,24 +140,44 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-6 relative z-10 pt-16">
         
         {/* Hero Section */}
-        <section id="hero" className="min-h-[80vh] flex flex-col justify-center py-20 relative">
-          <div className="space-y-6">
+        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center">
+          <div className="space-y-8 max-w-3xl mx-auto">
 
-            <div className="space-y-3">
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none">
-                Ahmet Yasin Aktürk
-              </h1>
-              <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-purple-400 to-accent-purple">
-                Web - Mobil Uygulama Geliştirici & Yapay Zeka İçerik Üreticisi
-              </h2>
+            {/* Ortalanmış Profil Fotoğrafı ve Neon Parlama Hareketi */}
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none">
+              <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900">
+                <img 
+                  src="/ahmet-yasin.jpg" 
+                  alt="Ahmet Yasin Aktürk" 
+                  className="w-full h-full object-cover scale-105"
+                />
+              </div>
+              {/* Arka plan glow efekti */}
+              <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-tr from-accent-purple to-accent-blue opacity-50 blur-md"></div>
             </div>
 
-            <p className="text-zinc-350 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-              Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
-            </p>
+            {/* Neon İsim ve El Yazısı Soyisim Bloğu */}
+            <div className="relative inline-block text-center mx-auto select-none pb-4">
+              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-[0.12em] text-transparent [-webkit-text-stroke:1.8px_#a855f7] drop-shadow-[0_0_20px_rgba(168,85,247,0.9)] uppercase font-sans leading-none">
+                AHMET YASİN
+              </h1>
+              <span className="absolute -bottom-3 right-0 sm:right-4 font-script text-4xl sm:text-5xl text-white/95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] transform -rotate-6 tracking-wider">
+                Aktürk
+              </span>
+            </div>
+
+            {/* Ünvan ve Açıklama Metni */}
+            <div className="space-y-4 pt-2">
+              <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-purple-400 to-accent-purple inline-block">
+                Web - Mobil Uygulama Geliştirici & Yapay Zeka İçerik Üreticisi
+              </h2>
+              <p className="text-zinc-350 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
+              </p>
+            </div>
 
             {/* Sosyal Medya & Eylem Butonları */}
-            <div className="pt-4 flex flex-wrap gap-4 items-center">
+            <div className="pt-4 flex flex-wrap gap-4 items-center justify-center">
               <a 
                 href="#contact" 
                 className="px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 font-medium hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-lg shadow-white/5 text-sm"
@@ -489,9 +512,9 @@ export default function Home() {
       </main>
 
       {/* Alt Bilgi (Footer) */}
-      <footer className="border-t border-zinc-900/60 bg-zinc-950/40 py-10 mt-20 relative z-10 text-center">
+      <footer className="py-12 mt-10 relative z-10 text-center">
         <div className="max-w-5xl mx-auto px-6 flex flex-col items-center justify-center">
-          <p className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-350 to-zinc-500 drop-shadow-[0_2px_4px_rgba(255,255,255,0.15)] uppercase font-mono">
+          <p className="text-xs sm:text-sm font-medium tracking-wider text-zinc-500 uppercase font-mono">
             © 2026 Ahmet Yasin Aktürk. Tüm hakları saklıdır.
           </p>
         </div>

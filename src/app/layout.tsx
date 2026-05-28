@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Alex_Brush } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +11,13 @@ const geistMono = Geist_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
 });
+
+const alexBrush = Alex_Brush({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-script",
+});
+
 
 export const metadata: Metadata = {
   title: "Ahmet Yasin Aktürk | Full-Stack Geliştirici & Yapay Zeka Üreticisi",
@@ -28,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${alexBrush.variable} scroll-smooth antialiased`}
     >
       <body className="bg-background text-foreground font-sans min-h-screen selection:bg-accent-purple/30 selection:text-purple-200">
         {children}
