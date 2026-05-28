@@ -1,65 +1,502 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import { 
+  Terminal, 
+  Mail, 
+  ExternalLink, 
+  Send, 
+  CheckCircle2, 
+  Menu, 
+  X, 
+  Cpu, 
+  Layers, 
+  Code2, 
+  Sparkles,
+  ArrowRight
+} from "lucide-react";
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // E-postanıza mesaj düşmesi için Formspree API entegrasyonu.
+      // E-postanız olan ahmet.41yasin@gmail.com adresine yönlendirilmiştir.
+      const response = await fetch("https://formspree.io/f/xkoeyqwl", { 
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      
+      if (response.ok) {
+        setFormSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Bir hata oluştu. Lütfen doğrudan e-posta ile iletişime geçin.");
+      }
+    } catch (error) {
+      alert("Bağlantı hatası. Lütfen doğrudan e-posta ile iletişime geçin.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    // Toast'u 5 saniye sonra kapat
+    setTimeout(() => {
+      setFormSubmitted(false);
+    }, 5000);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="relative min-h-screen selection:bg-accent-purple/30 selection:text-purple-200">
+      
+      {/* Arka Plan Glow Efektleri */}
+      <div className="ambient-glow-1"></div>
+      <div className="ambient-glow-2"></div>
+
+      {/* Navigasyon Header */}
+      <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800/40 bg-zinc-950/65 backdrop-blur-md transition-all duration-300">
+        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#hero" className="flex items-center">
+            <span className="text-base sm:text-lg font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400 drop-shadow-[0_2px_4px_rgba(255,255,255,0.15)] hover:scale-[1.02] transition-transform duration-300 uppercase font-sans">
+              AHMET YASİN AKTÜRK
+            </span>
+          </a>
+          
+          {/* Masaüstü Navigasyon */}
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-400">
+            <a href="#about" className="hover:text-zinc-100 transition-colors duration-200">Biyografi</a>
+            <a href="#projects" className="hover:text-zinc-100 transition-colors duration-200">Çalışmalarım</a>
+            <a href="#skills" className="hover:text-zinc-100 transition-colors duration-200">Yetkinlikler</a>
+            <a href="#contact" className="hover:text-zinc-100 transition-colors duration-200">İletişim</a>
+          </nav>
+
+          {/* Mobil Menü Butonu */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none"
+            aria-label="Menüyü Aç"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* Mobil Navigasyon Paneli */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-b border-zinc-800/80 bg-zinc-950 px-6 py-4 space-y-4 text-zinc-400 animate-fadeIn">
+            <a 
+              href="#about" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-white transition-colors duration-200"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Biyografi
+            </a>
+            <a 
+              href="#projects" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-white transition-colors duration-200"
             >
-              Learning
-            </a>{" "}
-            center.
+              Çalışmalarım
+            </a>
+            <a 
+              href="#skills" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-white transition-colors duration-200"
+            >
+              Yetkinlikler
+            </a>
+            <a 
+              href="#contact" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-white transition-colors duration-200"
+            >
+              İletişim
+            </a>
+          </div>
+        )}
+      </header>
+
+      {/* Ana İçerik */}
+      <main className="max-w-4xl mx-auto px-6 relative z-10 pt-16">
+        
+        {/* Hero Section */}
+        <section id="hero" className="min-h-[80vh] flex flex-col justify-center py-20 relative">
+          <div className="space-y-6">
+
+            <div className="space-y-3">
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none">
+                Ahmet Yasin Aktürk
+              </h1>
+              <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-purple-400 to-accent-purple">
+                Web - Mobil Uygulama Geliştirici & Yapay Zeka İçerik Üreticisi
+              </h2>
+            </div>
+
+            <p className="text-zinc-350 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+              Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
+            </p>
+
+            {/* Sosyal Medya & Eylem Butonları */}
+            <div className="pt-4 flex flex-wrap gap-4 items-center">
+              <a 
+                href="#contact" 
+                className="px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 font-medium hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-lg shadow-white/5 text-sm"
+              >
+                İletişime Geç
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              
+              <a 
+                href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-5 py-3 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-sm"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                Instagram
+              </a>
+
+              <a 
+                href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-5 py-3 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-sm"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Hakkımda (About) Section */}
+        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16">
+          <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-6">Biyografi</h3>
+          
+          <div className="max-w-3xl space-y-6 text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
+            <p>
+              Eskişehir Osmangazi Üniversitesi'ndeki akademik yolculuğumla eş zamanlı olarak, karmaşık problemleri modern teknolojilerle temiz kullanıcı deneyimlerine dönüştürüyorum. Yüksek performanslı web ve mobil uygulamalar inşa ederken, kodun işlevselliğine ve sürekli yeni teknolojiler öğrenmeye odaklanıyorum.
+            </p>
+            <p>
+              Geleneksel yazılım geliştirmeyi bir adım ileriye taşıyarak yapay zeka araçlarını ve dil modellerini iş akışıma doğrudan entegre ediyorum. Yeni projeler geliştirmekle kalmıyor, gelişmiş AI sistemlerini kullanarak görsel, işitsel ve metinsel içerik üretimleri gerçekleştiriyorum. Kodun mantıksal derinliğini yapay zekanın sunduğu dinamik vizyonla birleştirerek uçtan uca, yenilikçi dijital çözümler tasarlıyorum.
+            </p>
+          </div>
+        </section>
+
+        {/* Projeler Section */}
+        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16">
+          <div className="space-y-2 mb-10">
+            <h4 className="text-3xl font-bold tracking-tight text-white">Çalışmalarım</h4>
+            <p className="text-zinc-400 text-sm font-light leading-relaxed">
+              Geliştirdiğim yapay zeka sistemleri, kurumsal uygulama ve hayata geçirdiğim ticari dijital web girişimleri
+            </p>
+          </div>
+
+          {/* Projeler Grid Yapısı */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* 1. Fırtına AI */}
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80">
+                <img 
+                  src="/firtina-ai.png" 
+                  alt="Fırtına AI"
+                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
+                <div className="space-y-2">
+                  <h5 className="text-lg font-bold text-white">1. Fırtına AI</h5>
+                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    Gelişmiş ve ücretsiz yapay zeka araçlarını tek merkezde toplayan, ve kendi içinden kullanma imkanı veren kullanıcı odaklı yeni nesil yapay zeka uygulaması.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. ESOGÜ ABYS */}
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
+              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80">
+                <img 
+                  src="/esogu-abys.png" 
+                  alt="ESOGÜ ABYS Akreditasyon Sistemi"
+                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
+                <div className="space-y-2">
+                  <h5 className="text-lg font-bold text-white">2. ESOGÜ ABYS</h5>
+                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    Kurumların kalite ve akreditasyon süreçlerini dijitalleştiren, modern yazılım mimarisine sahip kurumsal veri ve süreç yönetim sistemi.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Kurulan İşletmeler & Platformlar */}
+            <div className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-2 space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-accent-purple shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <h5 className="text-lg font-bold text-white">3. Kurulan İşletmeler & Platformlar</h5>
+                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    Farklı sektörlerin ihtiyaçlarına yönelik uçtan uca tasarlayıp canlıya aldığım ticari web siteleri:
+                  </p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <a 
+                  href="https://hanyoresellezzetler.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                >
+                  <span>Han Yöresel Lezzetler</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </a>
+                <a 
+                  href="https://bizimkafecayko.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                >
+                  <span>Bizim Kafe Çayko</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </a>
+                <a 
+                  href="https://deft-cucurucho-cf2b29.netlify.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                >
+                  <span>Müşteri Portali</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Yetkinlikler (Skills) Section */}
+        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16">
+          <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-4">Yetkinlikler</h3>
+          <h4 className="text-3xl font-bold text-white tracking-tight mb-10">Kullandığım Teknolojiler</h4>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Web Geliştirme Yetenekleri */}
+            <div className="space-y-4">
+              <h5 className="font-mono text-xs text-accent-purple border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
+                <Code2 className="w-3.5 h-3.5" />
+                Full-Stack Web Geliştirme
+              </h5>
+              
+              <div className="space-y-3">
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Hızlı ve Dinamik Web Arayüzleri (React & Next.js)</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Modern Tasarım ve Görsel Kodlama (Tailwind CSS)</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-purple/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Güvenli Veritabanı Altyapısı (Supabase & Firebase)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Yapay Zeka & Otomasyon Yetenekleri */}
+            <div className="space-y-4">
+              <h5 className="font-mono text-xs text-accent-blue border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
+                <Cpu className="w-3.5 h-3.5" />
+                Yapay Zeka & Otomasyon
+              </h5>
+
+              <div className="space-y-3">
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Yapay Zeka Yönetimi ve Entegrasyonu (Prompt Eng.)</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Akıllı Sistemler ve Süreç Otomasyonu (AI Agents)</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Sistemler Arası Veri Aktarımı (API ve Entegrasyon)</span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
+                  <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Yapay zeka ile her çeşit içerik üretimi</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* İletişim (Contact) Section */}
+        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16">
+          <h4 className="text-3xl font-bold text-white tracking-tight mb-4">İletişim</h4>
+          <p className="text-zinc-400 font-light mb-10 max-w-lg leading-relaxed text-sm sm:text-base">
+            Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Form Alanı */}
+            <div className="md:col-span-2 relative">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">İsim Soyisim</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      required 
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">E-posta Adresi</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      required 
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">Mesajınız</label>
+                  <textarea 
+                    id="message" 
+                    rows={5} 
+                    required 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm resize-none"
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="px-6 py-3 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-950 font-medium transition-all w-full sm:w-auto text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {isSubmitting ? "Gönderiliyor..." : "Mesajı Gönder"}
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </form>
+
+              {/* Toast Başarı Bildirimi */}
+              {formSubmitted && (
+                <div className="absolute top-0 left-0 w-full h-full bg-zinc-950/90 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center space-y-4 animate-fadeIn">
+                  <CheckCircle2 className="w-12 h-12 text-emerald-400" />
+                  <div className="text-center space-y-1">
+                    <h5 className="text-zinc-100 font-semibold text-lg">Mesajınız İletildi!</h5>
+                    <p className="text-zinc-400 text-xs sm:text-sm font-light">En kısa sürede size e-posta ile dönüş yapacağım. Teşekkürler!</p>
+                  </div>
+                  <button 
+                    onClick={() => setFormSubmitted(false)}
+                    className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-xs font-mono text-zinc-300"
+                  >
+                    Yeni Mesaj Gönder
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Doğrudan İletişim Detayları */}
+            <div className="space-y-6">
+              <div className="glass-card rounded-xl p-6 space-y-5">
+                <h5 className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider">// Doğrudan İletişim</h5>
+                
+                <div className="space-y-3">
+                  <div>
+                    <span className="text-[10px] text-zinc-500 block uppercase font-mono">E-posta adresi</span>
+                    <a 
+                      href="mailto:ahmet.41yasin@gmail.com" 
+                      className="text-xs sm:text-sm font-mono text-zinc-300 hover:text-accent-purple transition-colors flex items-center gap-1.5 mt-0.5"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      ahmet.41yasin@gmail.com
+                    </a>
+                  </div>
+                  
+                  <div>
+                    <span className="text-[10px] text-zinc-500 block uppercase font-mono">Sosyal Kanallar</span>
+                    <div className="flex gap-3 mt-2.5">
+                      <a 
+                        href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                        aria-label="Instagram"
+                      >
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                      </a>
+                      <a 
+                        href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                        aria-label="LinkedIn"
+                      >
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+
+      {/* Alt Bilgi (Footer) */}
+      <footer className="border-t border-zinc-900/60 bg-zinc-950/40 py-10 mt-20 relative z-10 text-center">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col items-center justify-center">
+          <p className="text-sm font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-350 to-zinc-500 drop-shadow-[0_2px_4px_rgba(255,255,255,0.15)] uppercase font-mono">
+            © 2026 Ahmet Yasin Aktürk. Tüm hakları saklıdır.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
+
     </div>
   );
 }
