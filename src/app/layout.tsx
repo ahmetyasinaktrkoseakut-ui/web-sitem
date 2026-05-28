@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Ahmet Yasin Aktürk" }],
   keywords: ["Ahmet Yasin Aktürk", "Full-Stack Geliştirici", "Yapay Zeka Üreticisi", "Next.js Portfolyo", "Eskişehir Geliştirici", "React Developer", "AI Developer"],
   robots: "index, follow",
+  verification: {
+    google: "iGYiogkYheT0pvWzNcstyb0ZYG-gW5ZjOT_pn0f6n68",
+  },
 };
 
 export default function RootLayout({
