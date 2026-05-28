@@ -106,9 +106,10 @@ export default function Home() {
           </a>
           
           {/* Masaüstü Navigasyon */}
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-400">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium text-zinc-400">
             <a href="#about" className="hover:text-zinc-100 transition-colors duration-200">Biyografi</a>
             <a href="#projects" className="hover:text-zinc-100 transition-colors duration-200">Çalışmalarım</a>
+            <a href="#culture-art" className="hover:text-zinc-100 transition-colors duration-200">Kültür & Sanat</a>
             <a href="#skills" className="hover:text-zinc-100 transition-colors duration-200">Yetkinlikler</a>
             <a href="#contact" className="hover:text-zinc-100 transition-colors duration-200">İletişim</a>
           </nav>
@@ -139,6 +140,13 @@ export default function Home() {
               className="block hover:text-white transition-colors duration-200"
             >
               Çalışmalarım
+            </a>
+            <a 
+              href="#culture-art" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block hover:text-white transition-colors duration-200"
+            >
+              Kültür & Sanat
             </a>
             <a 
               href="#skills" 
@@ -370,6 +378,84 @@ export default function Home() {
                     <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">HTML, CSS & JS</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Kültür ve Sanat Section */}
+        <section id="culture-art" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+          <div className="space-y-2 mb-10">
+            <h4 className="text-3xl font-bold tracking-tight text-white">Kültür ve Sanat</h4>
+            <p className="text-zinc-400 text-sm font-light leading-relaxed">
+              Edebi çalışmalarım, kültürel projelerim ve yayımlanmış eserlerim
+            </p>
+          </div>
+
+          {/* Kitap Bento Grid Yapısı */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            
+            {/* Kitap Kapak Görseli */}
+            <div className="glass-card rounded-2xl overflow-hidden p-6 flex justify-center items-center group hover:-translate-y-1 transition-all duration-300 md:col-span-1">
+              <div className="relative rounded-lg overflow-hidden border border-zinc-800/80 shadow-[0_0_20px_rgba(0,0,0,0.6)] max-w-[200px] w-full">
+                <Image 
+                  src="/filistine-vefasizlik.jpg" 
+                  alt="Filistin'e Vefasızlık Kitap Kapağı"
+                  width={200}
+                  height={300}
+                  className="w-full h-auto object-cover scale-100 group-hover:scale-105 transition-all duration-500"
+                />
+              </div>
+            </div>
+
+            {/* Kitap Detayları ve Açıklama */}
+            <div className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between h-full space-y-6 hover:-translate-y-1 transition-all duration-300">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+                  <div>
+                    <h5 className="text-xl font-bold text-white">Filistin'e Vefasızlık</h5>
+                    <p className="text-xs text-accent-purple font-mono mt-1">Yazar: Ahmet Yasin Aktürk</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-purple/10 border border-accent-purple/30 text-xs font-semibold text-purple-300">
+                    Şiir Kitabı / Kasım 2024
+                  </span>
+                </div>
+                
+                <p className="text-zinc-300 text-sm sm:text-base font-light leading-relaxed">
+                  Filistin'de yaşanan insani dramı, Gazze'deki direnişi ve İslam coğrafyasının bu zulüm karşısındaki sessizliğini mercek altına alan edebi bir çığlık. Eserdeki şiirler, Mescid-i Aksa'nın ve Filistin halkının yalnızlığını, Müslüman toplumların "vefasızlığını" ve duyarsızlığını sarsıcı bir dille ele almaktadır. 
+                </p>
+                <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                  Bu eser, sadece edebi bir duruş sergilemekle kalmayıp aynı zamanda toplumsal bir farkındalık ve somut bir dayanışma amacı taşımaktadır.
+                </p>
+
+                <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center space-x-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0"></div>
+                  <span className="text-xs text-emerald-300 font-medium leading-relaxed">
+                    Kitabın satışından elde edilen tüm gelir Filistin'e yardım amaçlı bağışlanmaktadır.
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-2">
+                <a 
+                  href="https://cinius.shop/urun/filistine-vefasizlik/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-xs font-medium"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Cinius Shop'ta İncele
+                </a>
+                <a 
+                  href="https://1000kitap.com/kitap/filistine-vefasizlik--458245" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-xs font-medium"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  1000Kitap'ta İncele
                 </a>
               </div>
             </div>
