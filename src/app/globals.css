@@ -15,14 +15,14 @@
 }
 
 body {
-  background-color: #0a0a0d; /* Zengin Midnight Black zemin */
+  background-color: #0d0d15; /* Siyahlıktan uzak, derin Midnight Indigo zemin */
   color: #f4f4f5;
   overflow-x: hidden;
-  /* Premium Mesh Radyal Gradyan ve Dot Matrix Nokta Deseni */
+  /* Daha belirgin mor ve mavi radyal parlamalar (opasiteleri artırıldı) ve belirgin dot-matrix deseni */
   background-image: 
-    radial-gradient(at top left, rgba(168, 85, 247, 0.05) 0%, transparent 60%),
-    radial-gradient(at bottom right, rgba(6, 182, 212, 0.04) 0%, transparent 60%),
-    radial-gradient(rgba(255, 255, 255, 0.04) 1.2px, transparent 1.2px);
+    radial-gradient(at top left, rgba(168, 85, 247, 0.16) 0%, transparent 65%),
+    radial-gradient(at bottom right, rgba(6, 182, 212, 0.14) 0%, transparent 65%),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
   background-size: 100% 100%, 100% 100%, 24px 24px;
 }
 
