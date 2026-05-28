@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { 
   Terminal, 
   Mail, 
@@ -144,12 +145,15 @@ export default function Home() {
           <div className="space-y-8 max-w-3xl mx-auto">
 
             {/* Ortalanmış Profil Fotoğrafı ve Neon Parlama Hareketi */}
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none">
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group">
               <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900">
-                <img 
+                <Image 
                   src="/ahmet-yasin.jpg" 
                   alt="Ahmet Yasin Aktürk" 
-                  className="w-full h-full object-cover scale-105"
+                  width={176}
+                  height={176}
+                  className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500"
+                  priority
                 />
               </div>
               {/* Arka plan glow efekti */}
@@ -236,12 +240,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* 1. Fırtına AI */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80">
-                <img 
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
+                <Image 
                   src="/firtina-ai.png" 
                   alt="Fırtına AI"
-                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity"
+                  width={500}
+                  height={300}
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
@@ -255,12 +261,14 @@ export default function Home() {
             </div>
 
             {/* 2. ESOGÜ ABYS */}
-            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full">
-              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80">
-                <img 
+            <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group">
+              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
+                <Image 
                   src="/esogu-abys.png" 
                   alt="ESOGÜ ABYS Akreditasyon Sistemi"
-                  className="w-full h-full object-cover opacity-95 hover:opacity-100 transition-opacity"
+                  width={500}
+                  height={300}
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
@@ -292,28 +300,37 @@ export default function Home() {
                   href="https://hanyoresellezzetler.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
                 >
-                  <span>Han Yöresel Lezzetler</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center justify-between w-full text-xs font-mono">
+                    <span className="font-semibold">Han Yöresel Lezzetler</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">Next.js & Tailwind</span>
                 </a>
                 <a 
                   href="https://bizimkafecayko.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
                 >
-                  <span>Bizim Kafe Çayko</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center justify-between w-full text-xs font-mono">
+                    <span className="font-semibold">Bizim Kafe Çayko</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">React & Firebase</span>
                 </a>
                 <a 
                   href="https://deft-cucurucho-cf2b29.netlify.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all text-xs font-mono group"
+                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
                 >
-                  <span>Müşteri Portali</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex items-center justify-between w-full text-xs font-mono">
+                    <span className="font-semibold">Müşteri Portali</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">HTML, CSS & JS</span>
                 </a>
               </div>
             </div>
@@ -378,7 +395,7 @@ export default function Home() {
 
                 <div className="p-4 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-accent-blue/40 hover:bg-zinc-900/85 transition-all flex items-center space-x-3 shadow-sm shadow-black/30">
                   <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">Yapay zeka ile her çeşit içerik üretimi</span>
+                  <span className="text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">AI İçerik Üretimi (Görsel, İşitsel ve Metin)</span>
                 </div>
               </div>
             </div>
