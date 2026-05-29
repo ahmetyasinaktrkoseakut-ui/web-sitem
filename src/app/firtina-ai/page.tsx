@@ -28,13 +28,15 @@ export default function FirtinaAiPage() {
         </div>
 
         <div className="glass-card rounded-2xl overflow-hidden border border-zinc-850">
-          <div className="relative h-64 sm:h-96 w-full bg-zinc-900/60 border-b border-zinc-800/80">
+          <div className="relative h-64 sm:h-96 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-6">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
             <Image 
               src="/firtina-ai.png" 
               alt="Fırtına AI"
-              fill
+              width={512}
+              height={512}
               priority
-              className="object-cover"
+              className="h-full w-auto object-contain rounded-xl shadow-2xl relative z-10"
             />
           </div>
           <div className="p-6 sm:p-8 space-y-6">

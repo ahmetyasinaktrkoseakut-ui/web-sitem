@@ -280,13 +280,14 @@ export default function Home() {
             
             {/* 1. Fırtına AI */}
             <Link href="/firtina-ai" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-2 cursor-pointer">
-              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
+              <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
                 <Image 
                   src="/firtina-ai.png" 
                   alt="Fırtına AI"
-                  width={600}
-                  height={350}
-                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  width={512}
+                  height={512}
+                  className="h-full w-auto object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl relative z-10"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
@@ -319,13 +320,14 @@ export default function Home() {
 
             {/* 2. ESOGÜ ABYS */}
             <Link href="/esogu-abys" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-1 cursor-pointer">
-              <div className="relative h-56 w-full bg-zinc-900/60 border-b border-zinc-800/80 overflow-hidden">
+              <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
                 <Image 
                   src="/esogu-abys.png" 
                   alt="ESOGÜ ABYS Akreditasyon Sistemi"
-                  width={400}
-                  height={350}
-                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  width={773}
+                  height={510}
+                  className="max-h-full max-w-full object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl border border-zinc-800/50 relative z-10"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
