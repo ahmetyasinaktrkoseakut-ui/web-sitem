@@ -37,7 +37,7 @@ export default function Home() {
       { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
     );
 
-    const revealElements = document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal, .reveal-3d");
     revealElements.forEach((el) => observer.observe(el));
 
     return () => {
@@ -98,6 +98,14 @@ export default function Home() {
       <div className="grid-3d-wrap">
         <div className="grid-3d"></div>
       </div>
+
+      {/* Yüzen 3D Cam Küreler */}
+      <div className="absolute top-[20vh] left-[4%] w-20 h-20 glass-sphere sphere-float-slow opacity-50 hidden md:block" />
+      <div className="absolute top-[55vh] right-[6%] w-28 h-28 glass-sphere sphere-float-fast opacity-40 hidden md:block" />
+      <div className="absolute top-[130vh] left-[8%] w-16 h-16 glass-sphere sphere-float-medium opacity-30 hidden md:block" />
+      <div className="absolute top-[195vh] right-[4%] w-32 h-32 glass-sphere sphere-float-slow opacity-50 hidden md:block" />
+      <div className="absolute top-[265vh] left-[3%] w-24 h-24 glass-sphere sphere-float-medium opacity-45 hidden md:block" />
+      <div className="absolute top-[320vh] right-[5%] w-20 h-20 glass-sphere sphere-float-fast opacity-35 hidden md:block" />
 
       {/* Navigasyon Header */}
       <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800/40 bg-zinc-950/65 backdrop-blur-md transition-all duration-300">
@@ -176,13 +184,13 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-6 relative z-10 pt-16">
         
         {/* Hero Section */}
-        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center reveal">
+        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center">
           <div className="space-y-8 max-w-3xl mx-auto">
 
             {/* Ortalanmış Profil Fotoğrafı ve 3D Tilt Hareketi */}
             <ThreeDCard 
               glowColor="rgba(168, 85, 247, 0.35)"
-              className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group preserve-3d"
+              className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group preserve-3d intro-3d-photo"
             >
               <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900 translate-z-md">
                 <Image 
@@ -199,17 +207,17 @@ export default function Home() {
             </ThreeDCard>
 
             {/* Neon İsim ve El Yazısı Soyisim Bloğu */}
-            <div className="relative inline-block text-center mx-auto select-none pb-4">
-              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-[0.12em] text-transparent [-webkit-text-stroke:1.8px_#a855f7] drop-shadow-[0_0_20px_rgba(168,85,247,0.9)] uppercase font-sans leading-none">
+            <div className="relative inline-block text-center mx-auto select-none pb-4 intro-3d-title">
+              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-[0.12em] text-transparent [-webkit-text-stroke:1.8px_#a855f7] drop-shadow-[0_0_20px_rgba(168,85,247,0.9)] uppercase font-sans leading-none translate-z-md">
                 AHMET YASİN
               </h1>
-              <span className="absolute -bottom-3 right-0 sm:right-4 font-script text-4xl sm:text-5xl text-white/95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] transform -rotate-6 tracking-wider">
+              <span className="absolute -bottom-3 right-0 sm:right-4 font-script text-4xl sm:text-5xl text-white/95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] transform -rotate-6 tracking-wider translate-z-xl">
                 Aktürk
               </span>
             </div>
 
             {/* Ünvan ve Açıklama Metni */}
-            <div className="space-y-4 pt-2">
+            <div className="space-y-4 pt-2 intro-3d-subtitle">
               <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-purple-400 to-accent-purple inline-block">
                 Web - Mobil Uygulama Geliştirici & Yapay Zeka İçerik Üreticisi
               </h2>
@@ -219,7 +227,7 @@ export default function Home() {
             </div>
 
             {/* Sosyal Medya & Eylem Butonları */}
-            <div className="pt-4 flex flex-wrap gap-4 items-center justify-center">
+            <div className="pt-4 flex flex-wrap gap-4 items-center justify-center intro-3d-stagger">
               <a 
                 href="#contact" 
                 className="px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 font-medium hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-lg shadow-white/5 text-sm"
@@ -262,7 +270,7 @@ export default function Home() {
         </section>
 
         {/* Hakkımda (About) Section */}
-        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
           <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-6">Biyografi</h3>
           
           <div className="max-w-3xl space-y-6 text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
@@ -276,7 +284,7 @@ export default function Home() {
         </section>
 
         {/* Projeler Section */}
-        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
           <div className="space-y-2 mb-10">
             <h4 className="text-3xl font-bold tracking-tight text-white">Çalışmalarım</h4>
             <p className="text-zinc-400 text-sm font-light leading-relaxed">
@@ -420,7 +428,7 @@ export default function Home() {
         </section>
 
         {/* Kültür ve Sanat Section */}
-        <section id="culture-art" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+        <section id="culture-art" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
           <div className="space-y-2 mb-10">
             <h4 className="text-3xl font-bold tracking-tight text-white">Kültür ve Sanat</h4>
             <p className="text-zinc-400 text-sm font-light leading-relaxed">
@@ -504,7 +512,7 @@ export default function Home() {
         </section>
 
         {/* Yetkinlikler (Skills) Section */}
-        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
           <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-4">Yetkinlikler</h3>
           <h4 className="text-3xl font-bold text-white tracking-tight mb-10">Kullandığım Teknolojiler</h4>
 
@@ -595,7 +603,7 @@ export default function Home() {
         </section>
 
         {/* İletişim (Contact) Section */}
-        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal">
+        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
           <h4 className="text-3xl font-bold text-white tracking-tight mb-4">İletişim</h4>
           <p className="text-zinc-400 font-light mb-10 max-w-lg leading-relaxed text-sm sm:text-base">
             Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
