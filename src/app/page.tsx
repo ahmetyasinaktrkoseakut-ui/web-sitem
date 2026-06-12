@@ -17,6 +17,7 @@ import {
   Sparkles,
   ArrowRight
 } from "lucide-react";
+import { ThreeDCard } from "@/components/ThreeDCard";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -87,11 +88,16 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-accent-purple/30 selection:text-purple-200">
+    <div className="relative min-h-screen selection:bg-accent-purple/30 selection:text-purple-200 overflow-hidden">
       
       {/* Arka Plan Glow Efektleri */}
       <div className="ambient-glow-1"></div>
       <div className="ambient-glow-2"></div>
+
+      {/* 3D Perspektif Izgara Arka Planı */}
+      <div className="grid-3d-wrap">
+        <div className="grid-3d"></div>
+      </div>
 
       {/* Navigasyon Header */}
       <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800/40 bg-zinc-950/65 backdrop-blur-md transition-all duration-300">
@@ -173,9 +179,12 @@ export default function Home() {
         <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center reveal">
           <div className="space-y-8 max-w-3xl mx-auto">
 
-            {/* Ortalanmış Profil Fotoğrafı ve Neon Parlama Hareketi */}
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group">
-              <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900">
+            {/* Ortalanmış Profil Fotoğrafı ve 3D Tilt Hareketi */}
+            <ThreeDCard 
+              glowColor="rgba(168, 85, 247, 0.35)"
+              className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group preserve-3d"
+            >
+              <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900 translate-z-md">
                 <Image 
                   src="/ahmet-yasin.jpg" 
                   alt="Ahmet Yasin Aktürk" 
@@ -187,7 +196,7 @@ export default function Home() {
               </div>
               {/* Arka plan glow efekti */}
               <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-tr from-accent-purple to-accent-blue opacity-50 blur-md"></div>
-            </div>
+            </ThreeDCard>
 
             {/* Neon İsim ve El Yazısı Soyisim Bloğu */}
             <div className="relative inline-block text-center mx-auto select-none pb-4">
@@ -279,70 +288,83 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* 1. Fırtına AI */}
-            <Link href="/firtina-ai" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-2 cursor-pointer">
-              <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-                <Image 
-                  src="/firtina-ai.png" 
-                  alt="Fırtına AI"
-                  width={512}
-                  height={512}
-                  className="h-full w-auto object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl relative z-10"
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
-                <div className="space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <h5 className="text-lg font-bold text-white">1. Fırtına AI</h5>
-                    <div className="flex items-center gap-1.5 select-none">
-                      {/* App Store Rozeti */}
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-purple/40 hover:text-white transition-all">
-                        <svg className="w-3 h-3 fill-current text-accent-purple" viewBox="0 0 24 24">
-                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.57 2.94-1.39z"/>
-                        </svg>
-                        App Store
-                      </span>
-                      {/* Google Play Rozeti */}
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-blue/40 hover:text-white transition-all">
-                        <svg className="w-2.5 h-2.5 fill-current text-accent-blue" viewBox="0 0 24 24">
-                          <path d="M3.609 1.814L13.792 12 3.61 22.186A2.227 2.227 0 0 1 3 20.573V3.427c0-.623.235-1.196.609-1.613zm11.29 9.172l3.417-3.417a2.203 2.203 0 0 1 0 3.124l-3.417 3.417a2.203 2.203 0 0 1 0-3.124zm-1.89-1.89L4.478 2.656C4.851 2.239 5.424 2 6.047 2c.623 0 1.196.235 1.613.609l5.349 5.349zm0 5.808l-5.349 5.349A2.227 2.227 0 0 1 6.047 22c-.623 0-1.196-.235-1.613-.609l8.571-6.442z"/>
-                        </svg>
-                        Google Play
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
-                    Gelişmiş ve ücretsiz yapay zeka araçlarını tek merkezde toplayan, ve kendi içinden kullanma imkanı veren kullanıcı odaklı yeni nesil yapay zeka uygulaması.
-                  </p>
+            <Link href="/firtina-ai" className="md:col-span-2 block group">
+              <ThreeDCard 
+                glowColor="rgba(168, 85, 247, 0.2)" 
+                className="glass-card rounded-2xl overflow-hidden flex flex-col h-full hover:border-accent-purple/50 transition-all duration-300 preserve-3d cursor-pointer"
+              >
+                <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4 preserve-3d">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                  <Image 
+                    src="/firtina-ai.png" 
+                    alt="Fırtına AI"
+                    width={512}
+                    height={512}
+                    className="h-full w-auto object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl relative z-10 translate-z-lg"
+                  />
                 </div>
-              </div>
+                <div className="p-6 flex flex-col flex-grow justify-between space-y-3 translate-z-md">
+                  <div className="space-y-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <h5 className="text-lg font-bold text-white group-hover:text-accent-purple transition-colors">1. Fırtına AI</h5>
+                      <div className="flex items-center gap-1.5 select-none translate-z-sm">
+                        {/* App Store Rozeti */}
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-purple/40 hover:text-white transition-all">
+                          <svg className="w-3 h-3 fill-current text-accent-purple" viewBox="0 0 24 24">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.57 2.94-1.39z"/>
+                          </svg>
+                          App Store
+                        </span>
+                        {/* Google Play Rozeti */}
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-blue/40 hover:text-white transition-all">
+                          <svg className="w-2.5 h-2.5 fill-current text-accent-blue" viewBox="0 0 24 24">
+                            <path d="M3.609 1.814L13.792 12 3.61 22.186A2.227 2.227 0 0 1 3 20.573V3.427c0-.623.235-1.196.609-1.613zm11.29 9.172l3.417-3.417a2.203 2.203 0 0 1 0 3.124l-3.417 3.417a2.203 2.203 0 0 1 0-3.124zm-1.89-1.89L4.478 2.656C4.851 2.239 5.424 2 6.047 2c.623 0 1.196.235 1.613.609l5.349 5.349zm0 5.808l-5.349 5.349A2.227 2.227 0 0 1 6.047 22c-.623 0-1.196-.235-1.613-.609l8.571-6.442z"/>
+                          </svg>
+                          Google Play
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                      Gelişmiş ve ücretsiz yapay zeka araçlarını tek merkezde toplayan, ve kendi içinden kullanma imkanı veren kullanıcı odaklı yeni nesil yapay zeka uygulaması.
+                    </p>
+                  </div>
+                </div>
+              </ThreeDCard>
             </Link>
 
             {/* 2. ESOGÜ ABYS */}
-            <Link href="/esogu-abys" className="glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:-translate-y-1 transition-all duration-300 md:col-span-1 cursor-pointer">
-              <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-                <Image 
-                  src="/esogu-abys.png" 
-                  alt="ESOGÜ ABYS Akreditasyon Sistemi"
-                  width={773}
-                  height={510}
-                  className="max-h-full max-w-full object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl border border-zinc-800/50 relative z-10"
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow justify-between space-y-3">
-                <div className="space-y-2">
-                  <h5 className="text-lg font-bold text-white">2. ESOGÜ ABYS</h5>
-                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
-                    Kurumların kalite ve akreditasyon süreçlerini dijitalleştiren, modern yazılım mimarisine sahip kurumsal veri ve süreç yönetim sistemi.
-                  </p>
+            <Link href="/esogu-abys" className="md:col-span-1 block group">
+              <ThreeDCard 
+                glowColor="rgba(6, 182, 212, 0.2)" 
+                className="glass-card rounded-2xl overflow-hidden flex flex-col h-full hover:border-accent-blue/50 transition-all duration-300 preserve-3d cursor-pointer"
+              >
+                <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4 preserve-3d">
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                  <Image 
+                    src="/esogu-abys.png" 
+                    alt="ESOGÜ ABYS Akreditasyon Sistemi"
+                    width={773}
+                    height={510}
+                    className="max-h-full max-w-full object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl border border-zinc-800/50 relative z-10 translate-z-lg"
+                  />
                 </div>
-              </div>
+                <div className="p-6 flex flex-col flex-grow justify-between space-y-3 translate-z-md">
+                  <div className="space-y-2">
+                    <h5 className="text-lg font-bold text-white group-hover:text-accent-blue transition-colors">2. ESOGÜ ABYS</h5>
+                    <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                      Kurumların kalite ve akreditasyon süreçlerini dijitalleştiren, modern yazılım mimarisine sahip kurumsal veri ve süreç yönetim sistemi.
+                    </p>
+                  </div>
+                </div>
+              </ThreeDCard>
             </Link>
 
             {/* 3. Kurulan İşletmeler & Platformlar */}
-            <div className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-3 space-y-6 hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start space-x-4">
+            <ThreeDCard 
+              glowColor="rgba(168, 85, 247, 0.15)"
+              className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-3 space-y-6 hover:border-accent-purple/40 transition-all duration-300 preserve-3d"
+            >
+              <div className="flex items-start space-x-4 translate-z-md">
                 <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-accent-purple shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                   <Layers className="w-6 h-6" />
                 </div>
@@ -354,7 +376,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 translate-z-sm">
                 <a 
                   href="https://hanyoresellezzetler.vercel.app/" 
                   target="_blank" 
@@ -392,7 +414,7 @@ export default function Home() {
                   <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">HTML, CSS & JS</span>
                 </a>
               </div>
-            </div>
+            </ThreeDCard>
 
           </div>
         </section>
@@ -410,8 +432,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
             
             {/* Kitap Kapak Görseli */}
-            <div className="glass-card rounded-2xl overflow-hidden p-6 flex justify-center items-center group hover:-translate-y-1 transition-all duration-300 md:col-span-1">
-              <div className="relative rounded-lg overflow-hidden border border-zinc-800/80 shadow-[0_0_20px_rgba(0,0,0,0.6)] max-w-[200px] w-full">
+            <ThreeDCard 
+              glowColor="rgba(16, 185, 129, 0.15)"
+              className="glass-card rounded-2xl overflow-hidden p-6 flex justify-center items-center group transition-all duration-300 md:col-span-1 preserve-3d"
+            >
+              <div className="relative rounded-lg overflow-hidden border border-zinc-800/80 shadow-[0_0_20px_rgba(0,0,0,0.6)] max-w-[200px] w-full translate-z-lg">
                 <Image 
                   src="/filistine-vefasizlik.jpg" 
                   alt="Filistin'e Vefasızlık Kitap Kapağı"
@@ -420,11 +445,14 @@ export default function Home() {
                   className="w-full h-auto object-cover scale-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-            </div>
+            </ThreeDCard>
 
             {/* Kitap Detayları ve Açıklama */}
-            <div className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between h-full space-y-6 hover:-translate-y-1 transition-all duration-300">
-              <div className="space-y-4">
+            <ThreeDCard 
+              glowColor="rgba(168, 85, 247, 0.15)"
+              className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between h-full space-y-6 transition-all duration-300 preserve-3d"
+            >
+              <div className="space-y-4 translate-z-md">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
                   <div>
                     <h5 className="text-xl font-bold text-white">Filistin'e Vefasızlık</h5>
@@ -442,7 +470,7 @@ export default function Home() {
                   Bu eser, sadece edebi bir duruş sergilemekle kalmayıp aynı zamanda toplumsal bir farkındalık ve somut bir dayanışma amacı taşımaktadır.
                 </p>
 
-                <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center space-x-3">
+                <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center space-x-3 translate-z-sm">
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0"></div>
                   <span className="text-xs text-emerald-300 font-medium leading-relaxed">
                     Kitabın satışından elde edilen tüm gelir Filistin'e yardım amaçlı bağışlanmaktadır.
@@ -450,7 +478,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-2 translate-z-sm">
                 <a 
                   href="https://cinius.shop/urun/filistine-vefasizlik/" 
                   target="_blank" 
@@ -470,7 +498,7 @@ export default function Home() {
                   1000Kitap'ta İncele
                 </a>
               </div>
-            </div>
+            </ThreeDCard>
 
           </div>
         </section>
@@ -484,75 +512,84 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* Kart 1: Full-Stack Web Geliştirme (Geniş Kart) */}
-            <div className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
-              <div className="space-y-4">
+            <ThreeDCard 
+              glowColor="rgba(168, 85, 247, 0.2)"
+              className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between transition-all duration-300 group preserve-3d"
+            >
+              <div className="space-y-4 translate-z-md">
                 <h5 className="font-mono text-xs text-accent-purple border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
                   <Code2 className="w-3.5 h-3.5" />
                   Full-Stack Web Geliştirme
                 </h5>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">React & Next.js Arayüzleri</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">Modern Tailwind CSS Arayüzleri</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner sm:col-span-2">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner sm:col-span-2 translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">Supabase & Firebase Veritabanı Altyapısı</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </ThreeDCard>
 
             {/* Kart 2: Yapay Zeka & Otomasyon (Dar Kart) */}
-            <div className="glass-card rounded-2xl p-6 md:col-span-1 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
-              <div className="space-y-4">
+            <ThreeDCard 
+              glowColor="rgba(6, 182, 212, 0.2)"
+              className="glass-card rounded-2xl p-6 md:col-span-1 flex flex-col justify-between transition-all duration-300 group preserve-3d"
+            >
+              <div className="space-y-4 translate-z-md">
                 <h5 className="font-mono text-xs text-accent-blue border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
                   <Cpu className="w-3.5 h-3.5" />
                   Yapay Zeka & Otomasyon
                 </h5>
 
                 <div className="space-y-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">Prompt Engineering</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">Akıllı AI Agents Sistemleri</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </ThreeDCard>
 
             {/* Kart 3: AI İçerik Üretimi ve Sistemler (Tam Genişlik Kart) */}
-            <div className="glass-card rounded-2xl p-6 md:col-span-3 flex flex-col justify-between hover:-translate-y-1 transition-all duration-300 group">
-              <div className="space-y-4">
+            <ThreeDCard 
+              glowColor="rgba(250, 204, 21, 0.15)"
+              className="glass-card rounded-2xl p-6 md:col-span-3 flex flex-col justify-between transition-all duration-300 group preserve-3d"
+            >
+              <div className="space-y-4 translate-z-md">
                 <h5 className="font-mono text-xs text-zinc-400 border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
                   AI Medya & Entegrasyonlar
                 </h5>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">AI İçerik Üretimi (Görsel, İşitsel ve Metin)</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner">
+                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
                     <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
                     <span className="text-xs text-zinc-200 font-medium leading-relaxed">API Entegrasyonları ve Süreç Otomasyonu</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </ThreeDCard>
 
           </div>
         </section>
@@ -635,55 +672,60 @@ export default function Home() {
 
             {/* Doğrudan İletişim Detayları */}
             <div className="space-y-6">
-              <div className="glass-card rounded-xl p-6 space-y-5">
-                <h5 className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider">// Doğrudan İletişim</h5>
-                
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-[10px] text-zinc-500 block uppercase font-mono">E-posta adresi</span>
-                    <a 
-                      href="mailto:ahmet.41yasin@gmail.com" 
-                      className="text-xs sm:text-sm font-mono text-zinc-300 hover:text-accent-purple transition-colors flex items-center gap-1.5 mt-0.5"
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                      ahmet.41yasin@gmail.com
-                    </a>
-                  </div>
+              <ThreeDCard 
+                glowColor="rgba(168, 85, 247, 0.15)"
+                className="glass-card rounded-xl p-6 space-y-5 preserve-3d"
+              >
+                <div className="translate-z-md space-y-5">
+                  <h5 className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider">// Doğrudan İletişim</h5>
                   
-                  <div>
-                    <span className="text-[10px] text-zinc-500 block uppercase font-mono">Sosyal Kanallar</span>
-                    <div className="flex gap-3 mt-2.5">
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-[10px] text-zinc-500 block uppercase font-mono">E-posta adresi</span>
                       <a 
-                        href="https://github.com/ahmetyasinaktrkoseakut-ui" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
-                        aria-label="GitHub"
+                        href="mailto:ahmet.41yasin@gmail.com" 
+                        className="text-xs sm:text-sm font-mono text-zinc-300 hover:text-accent-purple transition-colors flex items-center gap-1.5 mt-0.5"
                       >
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <Mail className="w-3.5 h-3.5" />
+                        ahmet.41yasin@gmail.com
                       </a>
-                      <a 
-                        href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
-                        aria-label="LinkedIn"
-                      >
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                      </a>
-                      <a 
-                        href="https://www.instagram.com/ahmet_y_akturk_61/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
-                        aria-label="Instagram"
-                      >
-                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                      </a>
+                    </div>
+                    
+                    <div>
+                      <span className="text-[10px] text-zinc-500 block uppercase font-mono">Sosyal Kanallar</span>
+                      <div className="flex gap-3 mt-2.5 translate-z-sm">
+                        <a 
+                          href="https://github.com/ahmetyasinaktrkoseakut-ui" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          aria-label="GitHub"
+                        >
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a 
+                          href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          aria-label="LinkedIn"
+                        >
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a 
+                          href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          aria-label="Instagram"
+                        >
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </ThreeDCard>
             </div>
 
           </div>
