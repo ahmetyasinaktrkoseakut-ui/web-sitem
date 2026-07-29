@@ -58,6 +58,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { VisitorNotifier } from "@/components/VisitorNotifier";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +71,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${alexBrush.variable} scroll-smooth antialiased`}
     >
       <body className="bg-background text-foreground font-sans min-h-screen selection:bg-accent-purple/30 selection:text-purple-200">
+        <VisitorNotifier />
         {children}
         <Analytics />
       </body>
