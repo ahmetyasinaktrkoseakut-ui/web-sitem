@@ -93,6 +93,15 @@ export default function FirtinaAiPage() {
                     </li>
                   </ul>
                 </div>
+
+                <div className="pt-2 border-t border-zinc-800/80 flex items-center justify-between">
+                  <Link 
+                    href="/destek" 
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-purple/10 border border-accent-purple/30 text-xs font-mono text-purple-300 hover:text-white hover:bg-accent-purple/20 transition-all"
+                  >
+                    Fırtına AI Destek Merkezi &rarr;
+                  </Link>
+                </div>
               </div>
             </ThreeDCard>
           </div>
