@@ -708,3 +708,5 @@ export default function Home() {
     </div>
   );
 }
+// Force Vercel Production Build - Modern Obsidian Architecture
+
