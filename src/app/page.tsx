@@ -10,7 +10,14 @@ import {
   CheckCircle2,
   Menu,
   X,
-  LifeBuoy
+  LifeBuoy,
+  Code2,
+  Cpu,
+  Sparkles,
+  GraduationCap,
+  Zap,
+  Mail,
+  MapPin
 } from "lucide-react";
 
 export default function Home() {
@@ -67,7 +74,7 @@ export default function Home() {
       } else {
         alert("Bir hata oluştu. Lütfen doğrudan e-posta ile iletişime geçin.");
       }
-    } catch (error) {
+    } catch {
       alert("Bağlantı hatası. Lütfen doğrudan e-posta ile iletişime geçin.");
     } finally {
       setIsSubmitting(false);
@@ -91,24 +98,21 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-xl bg-surface-glass/85 border-b border-white/[0.08] shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-6">
           
+          {/* Logo / İsim */}
           <Link href="#hero" className="flex items-center gap-3 group select-none">
-            <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">
-              AHMET YASİN AKTÜRK
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container font-mono text-[11px] text-secondary">
-              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-              DEV &amp; AI
+            <span className="font-display text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+              Ahmet Yasin Aktürk
             </span>
           </Link>
 
           {/* Masaüstü Navigasyon */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium">
-            <a href="#biyografi" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Biyografi</a>
-            <a href="#calismalarim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Çalışmalarım</a>
-            <a href="#kultur-sanat" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Kültür &amp; Sanat</a>
-            <a href="#yetkinlikler" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Yetkinlikler</a>
-            <a href="#iletisim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">İletişim</a>
-            <Link href="/destek" className="px-3 py-1.5 text-secondary hover:text-white hover:bg-surface-container/80 transition-colors rounded-lg font-mono text-xs flex items-center gap-1">
+            <a href="#biyografi" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Biyografi</a>
+            <a href="#calismalarim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Çalışmalarım</a>
+            <a href="#kultur-sanat" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Kültür &amp; Sanat</a>
+            <a href="#yetkinlikler" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Yetkinlikler</a>
+            <a href="#iletisim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">İletişim</a>
+            <Link href="/destek" className="px-3 py-1.5 text-secondary hover:text-white hover:bg-surface-container/80 transition-colors rounded-lg text-xs flex items-center gap-1.5 font-medium">
               <LifeBuoy className="w-3.5 h-3.5" />
               Destek
             </Link>
@@ -122,12 +126,12 @@ export default function Home() {
             >
               İletişime Geç
             </a>
-            <div className="w-9 h-9 rounded-full overflow-hidden border border-white/20 bg-surface-container flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 bg-surface-container flex items-center justify-center shadow-md">
               <Image 
                 src="/ahmet-yasin.jpg" 
                 alt="Ahmet Yasin Aktürk" 
-                width={36} 
-                height={36} 
+                width={40} 
+                height={40} 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -166,46 +170,40 @@ export default function Home() {
               {/* Glow Underlay behind Avatar */}
               <div className="absolute -top-10 w-72 h-72 rounded-full bg-primary-container/20 blur-[100px] pointer-events-none"></div>
 
-              {/* Profile Avatar Container */}
-              <div className="relative mb-6 group">
-                <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-primary via-secondary to-primary-container opacity-75 blur-md group-hover:opacity-100 transition-all duration-700 animate-pulse"></div>
-                <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full p-1 bg-surface-container-lowest overflow-hidden shadow-2xl">
+              {/* Profile Avatar Container - Tamamen Renkli & Doğal */}
+              <div className="relative mb-8 group">
+                <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-primary via-secondary to-primary-container opacity-60 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full p-1 bg-surface-container-lowest overflow-hidden shadow-2xl border border-white/20">
                   <Image 
                     src="/ahmet-yasin.jpg" 
                     alt="Ahmet Yasin Aktürk" 
-                    width={144} 
-                    height={144} 
+                    width={176} 
+                    height={176} 
                     priority
-                    className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500 scale-105"
+                    className="w-full h-full object-cover rounded-full transition-all duration-500 hover:scale-105"
                   />
                 </div>
-                {/* Pulse Status Badge */}
-                <div className="absolute bottom-1 right-2 flex items-center justify-center p-1.5 rounded-full bg-surface-container-lowest border border-white/[0.08] shadow-lg">
+                {/* Status Indicator */}
+                <div className="absolute bottom-2 right-2 flex items-center justify-center p-1.5 rounded-full bg-surface-container-lowest border border-white/20 shadow-lg" title="Aktif & Projelere Açık">
                   <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping absolute opacity-75"></span>
                   <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 relative"></span>
                 </div>
               </div>
 
-              {/* Overline Tag */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high/80 border border-white/[0.08] backdrop-blur-md mb-4">
-                <span className="font-mono text-secondary text-xs">/&gt;</span>
-                <span className="font-mono text-xs text-secondary tracking-widest uppercase">Portfolio &amp; Lab 2026</span>
-              </div>
-
-              {/* Main Display Title */}
-              <div className="relative mb-4 max-w-4xl">
-                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-on-surface font-extrabold leading-tight">
-                  AHMET YASİN <span className="bg-gradient-to-r from-primary via-primary-fixed-dim to-secondary bg-clip-text text-transparent font-extrabold">AKTÜRK</span>
+              {/* Main Display Title - Şık, Karizmatik Tipografi */}
+              <div className="relative mb-5 max-w-4xl">
+                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                  Ahmet Yasin <span className="bg-gradient-to-r from-purple-400 via-violet-300 to-cyan-300 bg-clip-text text-transparent font-extrabold">Aktürk</span>
                 </h1>
               </div>
 
               {/* Role Heading */}
-              <h2 className="font-display text-xl sm:text-2xl font-semibold text-secondary-fixed max-w-2xl mb-4 leading-snug">
+              <h2 className="font-display text-lg sm:text-2xl font-medium text-slate-300 max-w-2xl mb-5 leading-snug">
                 Web - Mobil Uygulama Geliştirici &amp; Yapay Zeka İçerik Üreticisi
               </h2>
 
               {/* Description / Value Prop */}
-              <p className="text-base sm:text-lg text-text-muted max-w-3xl mb-8 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-text-muted max-w-3xl mb-10 leading-relaxed font-normal">
                 Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
               </p>
 
@@ -213,7 +211,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a 
                   href="#iletisim" 
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-display text-sm font-semibold shadow-[0_0_25px_rgba(183,109,255,0.4)] hover:shadow-[0_0_35px_rgba(183,109,255,0.7)] hover:scale-105 transition-all"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-display text-sm font-semibold shadow-[0_0_25px_rgba(183,109,255,0.4)] hover:shadow-[0_0_35px_rgba(183,109,255,0.7)] hover:scale-105 transition-all"
                 >
                   <span>İletişime Geç</span>
                   <ArrowRight className="w-4 h-4" />
@@ -223,7 +221,7 @@ export default function Home() {
                   href="https://github.com/ahmetyasinaktrkoseakut-ui" 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-medium text-xs sm:text-sm transition-all hover:scale-105 shadow-md border border-white/[0.08]"
                 >
                   <svg className="w-4 h-4 fill-current text-primary" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                   <span>GitHub</span>
@@ -233,7 +231,7 @@ export default function Home() {
                   href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-medium text-xs sm:text-sm transition-all hover:scale-105 shadow-md border border-white/[0.08]"
                 >
                   <svg className="w-4 h-4 fill-current text-secondary" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                   <span>LinkedIn</span>
@@ -243,70 +241,67 @@ export default function Home() {
                   href="https://www.instagram.com/ahmet_y_akturk_61/" 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-medium text-xs sm:text-sm transition-all hover:scale-105 shadow-md border border-white/[0.08]"
                 >
                   <svg className="w-4 h-4 fill-current text-primary-fixed-dim" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
                   <span>Instagram</span>
                 </a>
               </div>
-
-              {/* Metric Highlights Bento Strip (Görsel 2) */}
-              <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-6">
-                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
-                  <span className="font-display text-3xl font-bold text-primary">05+</span>
-                  <span className="font-mono text-xs text-text-dim mt-1">Yıllık İlgi &amp; Geliştirme</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
-                  <span className="font-display text-3xl font-bold text-secondary">100%</span>
-                  <span className="font-mono text-xs text-text-dim mt-1">AI Destekli Workflow</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
-                  <span className="font-display text-3xl font-bold text-tertiary">3+</span>
-                  <span className="font-mono text-xs text-text-dim mt-1">Canlı Ticari Platform</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
-                  <span className="font-display text-3xl font-bold text-primary-fixed">1</span>
-                  <span className="font-mono text-xs text-text-dim mt-1">Basılı Edebi Eser</span>
-                </div>
-              </div>
             </section>
 
             {/* BIOGRAPHY SECTION */}
             <section id="biyografi" className="relative scroll-mt-24 reveal">
-              <div className="mb-6">
-                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// ARKA PLAN</span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Biyografi</h2>
+              <div className="mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Biyografi</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                {/* Visual / Code Column */}
-                <div className="lg:col-span-5 rounded-2xl bg-surface-container-low border border-white/[0.08] p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                {/* Sol Kart: Akademik & Mühendislik Odakları */}
+                <div className="lg:col-span-5 rounded-2xl bg-surface-container-low border border-white/[0.08] p-8 flex flex-col justify-between shadow-xl relative overflow-hidden">
                   <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-primary-container/15 blur-[80px]"></div>
-                  <div className="space-y-4 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-white/[0.08] flex items-center justify-center text-secondary">
-                      <span className="font-mono text-xl font-bold">ES</span>
+                  
+                  <div className="space-y-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-white/[0.08] flex items-center justify-center text-primary shadow-sm">
+                      <GraduationCap className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display text-lg text-on-surface font-semibold">Akademik &amp; Mühendislik Disiplini</h3>
-                    <p className="text-sm text-text-muted leading-relaxed">
-                      Eskişehir Osmangazi Üniversitesi bünyesindeki mühendislik mantalitesiyle yazılım ekosistemindeki güncel paradigmalara yön veriyorum.
-                    </p>
-                  </div>
+                    
+                    <div>
+                      <h3 className="font-display text-xl text-white font-semibold">Akademik &amp; Mühendislik Disiplini</h3>
+                      <p className="text-sm text-text-muted mt-2 leading-relaxed">
+                        Eskişehir Osmangazi Üniversitesi bünyesindeki mühendislik mantalitesiyle yazılım ekosistemindeki güncel teknolojilere yön veriyorum.
+                      </p>
+                    </div>
 
-                  {/* Code Artifact Card (Görsel 5) */}
-                  <div className="mt-8 p-4 rounded-xl bg-surface-container-lowest border border-white/[0.06] text-text-dim font-mono text-xs space-y-1 shadow-inner relative z-10">
-                    <div className="flex items-center justify-between pb-2 text-on-surface-variant font-mono text-[11px] border-b border-white/[0.06]">
-                      <span className="text-secondary font-medium">~/profile/vision.config.ts</span>
-                      <span className="text-xs text-text-muted">ts</span>
+                    <div className="space-y-3 pt-2">
+                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
+                        <Code2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-semibold text-white">Modern Web &amp; Mobil Mimari</p>
+                          <p className="text-xs text-text-dim mt-0.5">Yüksek performanslı, temiz ve ölçeklenebilir kod yapısı</p>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
+                        <Cpu className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-semibold text-white">Yapay Zeka &amp; Büyük Dil Modelleri</p>
+                          <p className="text-xs text-text-dim mt-0.5">Otonom LLM sistemleri ve pratik AI ajan iş akışları</p>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
+                        <Sparkles className="w-5 h-5 text-tertiary shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-semibold text-white">Estetik ve Hız Dengesi</p>
+                          <p className="text-xs text-text-dim mt-0.5">Kullanıcıyı yormayan, sezgisel ve modern arayüz tasarımı</p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="pt-1"><span className="text-primary font-semibold">const</span> developer = &#123;</p>
-                    <p className="pl-4">core: <span className="text-tertiary">"Full-Stack Web &amp; Mobile"</span>,</p>
-                    <p className="pl-4">intelligence: <span className="text-secondary">"Autonomous LLM Systems"</span>,</p>
-                    <p className="pl-4">drive: <span className="text-primary-fixed-dim">"High Aesthetics + High Speed"</span></p>
-                    <p>&#125;;</p>
                   </div>
                 </div>
 
-                {/* Narrative Column */}
+                {/* Sağ Kart: Detaylı Biyografi Metni */}
                 <div className="lg:col-span-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 lg:p-10 flex flex-col justify-center shadow-xl space-y-6">
                   <p className="text-base text-on-surface leading-relaxed">
                     Eskişehir Osmangazi Üniversitesi'ndeki akademik yolculuğumla eş zamanlı olarak, karmaşık problemleri modern teknolojilerle temiz kullanıcı deneyimlerine dönüştürüyorum. Yüksek performanslı web ve mobil uygulamalar inşa ederken, kodun işlevselliğine ve sürekli yeni teknolojiler öğrenmeye odaklanıyorum.
@@ -314,15 +309,15 @@ export default function Home() {
                   <p className="text-base text-text-muted leading-relaxed">
                     Geleneksel yazılım geliştirmeyi bir adım ileriye taşıyarak yapay zeka araçlarını ve dil modellerini iş akışıma doğrudan entegre ediyorum. Yeni projeler geliştirmekle kalmıyor, gelişmiş AI sistemlerini kullanarak görsel, işitsel ve metinsel içerik üretimleri gerçekleştiriyorum. Kodun mantıksal derinliğini yapay zekanın sunduğu dinamik vizyonla birleştirerek uçtan uca, yenilikçi dijital çözümler tasarlıyorum.
                   </p>
-                  <div className="pt-4 flex flex-wrap gap-3">
-                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-primary border border-white/[0.06]">
-                      &bull; Temiz Mimari
+                  <div className="pt-2 flex flex-wrap gap-3">
+                    <span className="px-4 py-2 rounded-xl bg-surface-container text-xs text-white border border-white/[0.08] font-medium">
+                      Temiz Mimari
                     </span>
-                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-secondary border border-white/[0.06]">
-                      &bull; AI Co-Creation
+                    <span className="px-4 py-2 rounded-xl bg-surface-container text-xs text-secondary border border-white/[0.08] font-medium">
+                      AI Co-Creation
                     </span>
-                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-tertiary border border-white/[0.06]">
-                      &bull; Performans Odaklı
+                    <span className="px-4 py-2 rounded-xl bg-surface-container text-xs text-tertiary border border-white/[0.08] font-medium">
+                      Performans Odaklı
                     </span>
                   </div>
                 </div>
@@ -331,10 +326,10 @@ export default function Home() {
 
             {/* WORKS / ÇALIŞMALARIM SECTION */}
             <section id="calismalarim" className="relative scroll-mt-24 reveal">
-              <div className="mb-6">
-                <span className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">// PORTFOLIO</span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Çalışmalarım</h2>
-                <p className="text-sm text-text-muted mt-1">
+              <div className="mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Çalışmalarım</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
+                <p className="text-sm text-text-muted mt-3">
                   Geliştirdiğim yapay zeka sistemleri, kurumsal uygulama ve hayata geçirdiğim ticari dijital web girişimleri
                 </p>
               </div>
@@ -354,17 +349,16 @@ export default function Home() {
                         className="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 rounded-xl"
                       />
                       <div className="absolute top-3 right-3 flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-md bg-surface-container-lowest/80 backdrop-blur-md font-mono text-xs text-secondary font-semibold border border-white/[0.08]">
+                        <span className="px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-xs text-secondary font-semibold border border-white/[0.08]">
                           Mobil &amp; AI
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="font-mono text-xs text-primary font-bold">PROJE 01</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-text-dim"></span>
-                      <span className="font-mono text-xs text-emerald-400">Canlıda</span>
+                      <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span className="text-xs text-emerald-400 font-medium">Canlıda</span>
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                       1. Fırtına AI
                     </h3>
                     <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
@@ -373,18 +367,18 @@ export default function Home() {
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-4 bg-surface-container-lowest/40 -mx-7 -mb-7 p-6 rounded-b-2xl border-t border-white/[0.06]">
                     <div className="flex items-center gap-2.5">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-on-surface border border-white/[0.06]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high text-xs text-on-surface border border-white/[0.06]">
                         App Store
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-on-surface border border-white/[0.06]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high text-xs text-on-surface border border-white/[0.06]">
                         Google Play
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Link href="/destek" className="text-xs font-mono text-text-dim hover:text-white transition-colors">
+                      <Link href="/destek" className="text-xs text-text-dim hover:text-white transition-colors">
                         Destek
                       </Link>
-                      <Link href="/firtina-ai" className="inline-flex items-center gap-1 text-primary font-mono text-xs hover:underline">
+                      <Link href="/firtina-ai" className="inline-flex items-center gap-1 text-primary text-xs hover:underline font-medium">
                         <span>İncele</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
@@ -404,17 +398,16 @@ export default function Home() {
                         className="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 rounded-xl border border-white/[0.08]"
                       />
                       <div className="absolute top-3 right-3 flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-md bg-surface-container-lowest/80 backdrop-blur-md font-mono text-xs text-tertiary font-semibold border border-white/[0.08]">
+                        <span className="px-3 py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-xs text-tertiary font-semibold border border-white/[0.08]">
                           Kurumsal SaaS
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="font-mono text-xs text-secondary font-bold">PROJE 02</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-text-dim"></span>
-                      <span className="font-mono text-xs text-secondary">Akademik</span>
+                      <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                      <span className="text-xs text-cyan-400 font-medium">Akademik</span>
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-on-surface mb-3 group-hover:text-secondary transition-colors">
+                    <h3 className="font-display text-2xl font-bold text-white mb-3 group-hover:text-secondary transition-colors">
                       2. ESOGÜ ABYS
                     </h3>
                     <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
@@ -423,11 +416,11 @@ export default function Home() {
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-4 pt-4 bg-surface-container-lowest/40 -mx-7 -mb-7 p-6 rounded-b-2xl border-t border-white/[0.06]">
                     <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-text-muted border border-white/[0.06]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high text-xs text-text-muted border border-white/[0.06]">
                         Veri &amp; Kalite Mimari
                       </span>
                     </div>
-                    <Link href="/esogu-abys" className="inline-flex items-center gap-1 text-secondary font-mono text-xs hover:underline">
+                    <Link href="/esogu-abys" className="inline-flex items-center gap-1 text-secondary text-xs hover:underline font-medium">
                       <span>İncele</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -439,11 +432,11 @@ export default function Home() {
               {/* 3. Kurulan İşletmeler & Platformlar */}
               <div className="rounded-2xl bg-surface-container-high/60 border border-white/[0.08] backdrop-blur-xl p-8 shadow-xl">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary font-mono text-lg font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary font-bold">
                     3
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-on-surface">3. Kurulan İşletmeler &amp; Platformlar</h3>
+                    <h3 className="font-display text-xl font-bold text-white">3. Kurulan İşletmeler &amp; Platformlar</h3>
                     <p className="text-xs text-text-muted">Farklı sektörlerin ihtiyaçlarına yönelik uçtan uca tasarlayıp canlıya aldığım ticari web siteleri:</p>
                   </div>
                 </div>
@@ -458,14 +451,14 @@ export default function Home() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="font-mono text-xs text-primary font-semibold">E-Ticaret / Gıda</span>
+                        <span className="text-xs text-primary font-semibold">E-Ticaret / Gıda</span>
                         <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-primary transition-colors" />
                       </div>
-                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-primary transition-colors">Han Yöresel Lezzetler</h4>
+                      <h4 className="font-display text-base font-semibold text-white group-hover:text-primary transition-colors">Han Yöresel Lezzetler</h4>
                       <p className="text-xs text-text-muted mt-2 leading-relaxed">Özel yöresel ürünlerin dijital vitrini ve sipariş koordinasyon kanalı.</p>
                     </div>
                     <div className="mt-6 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-primary-fixed-dim">Next.js &amp; Tailwind</span>
+                      <span className="px-2.5 py-1 rounded bg-surface-container text-[11px] text-primary-fixed-dim">Next.js &amp; Tailwind</span>
                     </div>
                   </a>
 
@@ -478,14 +471,14 @@ export default function Home() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="font-mono text-xs text-secondary font-semibold">Gastronomi / Menü</span>
+                        <span className="text-xs text-secondary font-semibold">Gastronomi / Menü</span>
                         <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-secondary transition-colors" />
                       </div>
-                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-secondary transition-colors">Bizim Kafe Çayko</h4>
+                      <h4 className="font-display text-base font-semibold text-white group-hover:text-secondary transition-colors">Bizim Kafe Çayko</h4>
                       <p className="text-xs text-text-muted mt-2 leading-relaxed">Kafe içi dinamik QR menü entegrasyonu ve dijital rezervasyon platformu.</p>
                     </div>
                     <div className="mt-6 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-secondary">React &amp; Firebase</span>
+                      <span className="px-2.5 py-1 rounded bg-surface-container text-[11px] text-secondary">React &amp; Firebase</span>
                     </div>
                   </a>
 
@@ -498,14 +491,14 @@ export default function Home() {
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="font-mono text-xs text-tertiary font-semibold">B2B Portal</span>
+                        <span className="text-xs text-tertiary font-semibold">B2B Portal</span>
                         <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-tertiary transition-colors" />
                       </div>
-                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-tertiary transition-colors">Müşteri Portali</h4>
+                      <h4 className="font-display text-base font-semibold text-white group-hover:text-tertiary transition-colors">Müşteri Portali</h4>
                       <p className="text-xs text-text-muted mt-2 leading-relaxed">Hızlı ve hafif erişimli müşteri destek ve hesap kontrol arabirimi.</p>
                     </div>
                     <div className="mt-6 flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-tertiary">HTML, CSS &amp; JS</span>
+                      <span className="px-2.5 py-1 rounded bg-surface-container text-[11px] text-tertiary">HTML, CSS &amp; JS</span>
                     </div>
                   </a>
                 </div>
@@ -514,10 +507,10 @@ export default function Home() {
 
             {/* CULTURE & ART (KÜLTÜR VE SANAT) SECTION */}
             <section id="kultur-sanat" className="relative scroll-mt-24 reveal">
-              <div className="mb-6">
-                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// EDEBİYAT &amp; KÜLTÜR</span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Kültür ve Sanat</h2>
-                <p className="text-sm text-text-muted mt-1">Edebi çalışmalarım, kültürel projelerim ve yayımlanmış eserlerim</p>
+              <div className="mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Kültür ve Sanat</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
+                <p className="text-sm text-text-muted mt-3">Edebi çalışmalarım, kültürel projelerim ve yayımlanmış eserlerim</p>
               </div>
 
               {/* Book Spotlight Feature Banner */}
@@ -544,15 +537,15 @@ export default function Home() {
                   {/* Book Narrative Info Column */}
                   <div className="lg:col-span-8 flex flex-col space-y-6">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="px-3 py-1 rounded-full bg-primary-container/20 border border-primary/30 text-primary font-mono text-xs font-semibold">
+                      <span className="px-3.5 py-1 rounded-full bg-primary-container/20 border border-primary/30 text-primary text-xs font-semibold">
                         Şiir Kitabı / Kasım 2024
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-surface-container border border-white/[0.06] text-text-muted font-mono text-xs">
+                      <span className="px-3.5 py-1 rounded-full bg-surface-container border border-white/[0.06] text-text-muted text-xs">
                         Yazar: Ahmet Yasin Aktürk
                       </span>
                     </div>
 
-                    <h3 className="font-display text-3xl font-bold text-on-surface">
+                    <h3 className="font-display text-3xl font-bold text-white">
                       Filistin'e Vefasızlık
                     </h3>
 
@@ -566,7 +559,7 @@ export default function Home() {
                     {/* Donation Cause Badge */}
                     <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/20 backdrop-blur-md flex items-center gap-3 shadow-inner">
                       <span className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-                      <p className="font-mono text-xs text-emerald-300 font-medium">
+                      <p className="text-xs text-emerald-300 font-medium">
                         Kitabın satışından elde edilen tüm gelir Filistin'e yardım amaçlı bağışlanmaktadır.
                       </p>
                     </div>
@@ -577,7 +570,7 @@ export default function Home() {
                         href="https://cinius.shop/urun/filistine-vefasizlik/" 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-on-surface font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-white font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
                       >
                         <ExternalLink className="w-4 h-4 text-primary" />
                         <span>Cinius Shop'ta İncele</span>
@@ -586,7 +579,7 @@ export default function Home() {
                         href="https://1000kitap.com/kitap/filistine-vefasizlik--458245" 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-on-surface font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-white font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
                       >
                         <ExternalLink className="w-4 h-4 text-secondary" />
                         <span>1000Kitap'ta İncele</span>
@@ -600,10 +593,10 @@ export default function Home() {
 
             {/* SKILLS / YETKİNLİKLER SECTION */}
             <section id="yetkinlikler" className="relative scroll-mt-24 reveal">
-              <div className="mb-6">
-                <span className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">// STACK &amp; CAPABILITIES</span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Yetkinlikler</h2>
-                <p className="text-sm text-text-muted mt-1">Kullandığım Teknolojiler ve Üretim Araçları</p>
+              <div className="mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Yetkinlikler</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
+                <p className="text-sm text-text-muted mt-3">Kullandığım Teknolojiler ve Üretim Araçları</p>
               </div>
 
               {/* Categorized Tech Matrix */}
@@ -613,10 +606,10 @@ export default function Home() {
                 <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
                   <div>
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary font-mono text-sm font-bold">
-                        &lt;/&gt;
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary">
+                        <Code2 className="w-5 h-5" />
                       </div>
-                      <h3 className="font-display text-lg font-bold text-on-surface">Full-Stack Web Geliştirme</h3>
+                      <h3 className="font-display text-lg font-bold text-white">Full-Stack Web Geliştirme</h3>
                     </div>
                     <div className="space-y-3">
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
@@ -625,7 +618,7 @@ export default function Home() {
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-primary-container"></span>
-                        <span className="text-sm text-on-surface font-medium">Modern Tailwind CSS Arayüzleri</span>
+                        <span className="text-sm text-on-surface font-medium">Modern Tailwind CSS Mimarisi</span>
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-primary-fixed"></span>
@@ -633,9 +626,9 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim text-xs">
                     <span>Modern Web Stack</span>
-                    <span className="text-primary font-semibold">99.9% Uptime Mindset</span>
+                    <span className="text-primary font-semibold">Performans &amp; Hız</span>
                   </div>
                 </div>
 
@@ -643,15 +636,15 @@ export default function Home() {
                 <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
                   <div>
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-secondary font-mono text-sm font-bold">
-                        AI
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-secondary">
+                        <Cpu className="w-5 h-5" />
                       </div>
-                      <h3 className="font-display text-lg font-bold text-on-surface">Yapay Zeka &amp; Otomasyon</h3>
+                      <h3 className="font-display text-lg font-bold text-white">Yapay Zeka &amp; Otomasyon</h3>
                     </div>
                     <div className="space-y-3">
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                        <span className="text-sm text-on-surface font-medium">Prompt Engineering</span>
+                        <span className="text-sm text-on-surface font-medium">Prompt Engineering &amp; Fine-Tuning</span>
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-secondary-fixed"></span>
@@ -659,12 +652,12 @@ export default function Home() {
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-secondary-container"></span>
-                        <span className="text-sm text-on-surface font-medium">Autonomous Task Chains</span>
+                        <span className="text-sm text-on-surface font-medium">Otonom Görev Zincirleri</span>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
-                    <span>AI Architecture</span>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim text-xs">
+                    <span>AI Mimarisi</span>
                     <span className="text-secondary font-semibold">LLMs &amp; Agents</span>
                   </div>
                 </div>
@@ -673,15 +666,15 @@ export default function Home() {
                 <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
                   <div>
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-tertiary font-mono text-sm font-bold">
-                        *
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-tertiary">
+                        <Sparkles className="w-5 h-5" />
                       </div>
-                      <h3 className="font-display text-lg font-bold text-on-surface">AI Medya &amp; Entegrasyonlar</h3>
+                      <h3 className="font-display text-lg font-bold text-white">AI Medya &amp; Entegrasyonlar</h3>
                     </div>
                     <div className="space-y-3">
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-tertiary"></span>
-                        <span className="text-sm text-on-surface font-medium">AI İçerik Üretimi (Görsel, İşitsel, Metin)</span>
+                        <span className="text-sm text-on-surface font-medium">Görsel, İşitsel ve Metinsel İçerik Üretimi</span>
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
@@ -689,12 +682,12 @@ export default function Home() {
                       </div>
                       <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
                         <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
-                        <span className="text-sm text-on-surface font-medium">Multi-Modal Generative Workflows</span>
+                        <span className="text-sm text-on-surface font-medium">Multi-Modal Generative Süreçler</span>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
-                    <span>Creative Synthesis</span>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim text-xs">
+                    <span>Yaratıcı Üretim</span>
                     <span className="text-tertiary font-semibold">Generative Tech</span>
                   </div>
                 </div>
@@ -704,10 +697,10 @@ export default function Home() {
 
             {/* CONTACT / İLETİŞİM SECTION */}
             <section id="iletisim" className="relative mb-24 scroll-mt-24 reveal">
-              <div className="mb-6">
-                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// CONNECT</span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">İletişim</h2>
-                <p className="text-sm text-text-muted mt-1">
+              <div className="mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">İletişim</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
+                <p className="text-sm text-text-muted mt-3">
                   Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
                 </p>
               </div>
@@ -719,7 +712,7 @@ export default function Home() {
                   <form onSubmit={handleFormSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="name">
+                        <label className="block text-xs text-text-muted font-medium uppercase tracking-wider mb-2" htmlFor="name">
                           İsim Soyisim
                         </label>
                         <input 
@@ -733,7 +726,7 @@ export default function Home() {
                         />
                       </div>
                       <div>
-                        <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="email">
+                        <label className="block text-xs text-text-muted font-medium uppercase tracking-wider mb-2" htmlFor="email">
                           E-posta Adresi
                         </label>
                         <input 
@@ -748,7 +741,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div>
-                      <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="message">
+                      <label className="block text-xs text-text-muted font-medium uppercase tracking-wider mb-2" htmlFor="message">
                         Mesajınız
                       </label>
                       <textarea 
@@ -774,7 +767,7 @@ export default function Home() {
                     </div>
 
                     {formSubmitted && (
-                      <div className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 font-mono text-xs flex items-center gap-2">
+                      <div className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2 font-medium">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                         <span>Mesajınız başarıyla iletildi. En kısa sürede geri döneceğim!</span>
                       </div>
@@ -786,31 +779,33 @@ export default function Home() {
                 <div className="lg:col-span-5 space-y-6">
                   <div className="rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 shadow-xl relative overflow-hidden">
                     <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-accent-cyan-glow blur-[80px]"></div>
-                    <span className="font-mono text-xs uppercase tracking-widest text-secondary font-bold block mb-4">
-                      // DOĞRUDAN İLETİŞİM
-                    </span>
+                    <h3 className="text-base font-display font-bold text-white tracking-wide block mb-6">
+                      Doğrudan İletişim
+                    </h3>
                     
-                    <div className="space-y-4 mb-8">
+                    <div className="space-y-5 mb-8">
                       <div>
-                        <span className="font-mono text-xs text-text-dim block">E-POSTA ADRESİ</span>
+                        <span className="text-xs text-text-dim block font-medium">E-POSTA ADRESİ</span>
                         <a 
                           href="mailto:ahmet.41yasin@gmail.com" 
-                          className="font-display text-base text-secondary hover:text-primary transition-colors flex items-center gap-2 mt-1"
+                          className="font-display text-base text-secondary hover:text-primary transition-colors flex items-center gap-2 mt-1 font-semibold"
                         >
+                          <Mail className="w-4 h-4" />
                           <span>ahmet.41yasin@gmail.com</span>
                         </a>
                       </div>
                       <div>
-                        <span className="font-mono text-xs text-text-dim block">KONUM &amp; ZAMAN DİLİMİ</span>
-                        <p className="text-sm text-on-surface mt-1 flex items-center gap-2">
+                        <span className="text-xs text-text-dim block font-medium">KONUM &amp; ZAMAN DİLİMİ</span>
+                        <p className="text-sm text-on-surface mt-1 flex items-center gap-2 font-medium">
+                          <MapPin className="w-4 h-4 text-text-dim" />
                           <span>Eskişehir / Türkiye (UTC+3)</span>
                         </p>
                       </div>
                       <div>
-                        <span className="font-mono text-xs text-text-dim block">FIRTIINA AI KULLANICI DESTEĞİ</span>
+                        <span className="text-xs text-text-dim block font-medium">FIRTIINA AI KULLANICI DESTEĞİ</span>
                         <Link 
                           href="/destek" 
-                          className="text-xs text-primary hover:underline flex items-center gap-1.5 mt-1 font-mono"
+                          className="text-xs text-primary hover:underline flex items-center gap-1.5 mt-1 font-medium"
                         >
                           <LifeBuoy className="w-3.5 h-3.5" />
                           <span>Destek Merkezi Sayfası &rarr;</span>
@@ -819,7 +814,7 @@ export default function Home() {
                     </div>
 
                     <div className="pt-6 border-t border-white/[0.06]">
-                      <span className="font-mono text-xs text-text-dim block mb-3 uppercase tracking-wider">Sosyal Kanallar</span>
+                      <span className="text-xs text-text-dim block mb-3 uppercase tracking-wider font-medium">Sosyal Kanallar</span>
                       <div className="flex items-center gap-3">
                         <a 
                           href="https://github.com/ahmetyasinaktrkoseakut-ui" 
@@ -857,12 +852,12 @@ export default function Home() {
                     <div className="flex items-center gap-3">
                       <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
                       <div>
-                        <span className="font-mono text-xs text-on-surface font-semibold block">Yeni Projeler İçin Açık</span>
+                        <span className="text-xs text-white font-semibold block">Yeni Projeler İçin Açık</span>
                         <span className="text-xs text-text-dim">Web, Mobil &amp; AI Çözümleri</span>
                       </div>
                     </div>
                     <a 
-                      className="px-3.5 py-1.5 rounded-lg bg-surface-container border border-white/[0.08] font-mono text-xs text-secondary hover:bg-secondary hover:text-on-secondary transition-all" 
+                      className="px-4 py-2 rounded-xl bg-surface-container border border-white/[0.08] text-xs font-semibold text-secondary hover:bg-secondary hover:text-on-secondary transition-all" 
                       href="mailto:ahmet.41yasin@gmail.com"
                     >
                       Görüşelim
@@ -881,39 +876,36 @@ export default function Home() {
       <footer className="relative z-10 w-full bg-surface-container-lowest border-t border-white/[0.08] mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col items-center md:items-start gap-2">
-              <div className="flex items-center gap-2">
-                <span className="font-display text-base font-bold text-on-surface">AHMET YASİN AKTÜRK</span>
-                <span className="px-2 py-0.5 rounded-full bg-surface-container-high border border-white/[0.06] font-mono text-[10px] text-tertiary">Portfolio</span>
-              </div>
+            <div className="flex flex-col items-center md:items-start gap-1.5">
+              <span className="font-display text-lg font-bold text-white tracking-tight">Ahmet Yasin Aktürk</span>
               <p className="text-xs text-text-dim">Web - Mobil Uygulama Geliştirici &amp; Yapay Zeka İçerik Üreticisi</p>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-text-muted">
-              <a className="hover:text-on-surface transition-colors" href="#biyografi">Biyografi</a>
-              <a className="hover:text-on-surface transition-colors" href="#calismalarim">Çalışmalarım</a>
-              <a className="hover:text-on-surface transition-colors" href="#kultur-sanat">Kültür &amp; Sanat</a>
-              <a className="hover:text-on-surface transition-colors" href="#yetkinlikler">Yetkinlikler</a>
-              <a className="hover:text-on-surface transition-colors" href="#iletisim">İletişim</a>
+              <a className="hover:text-white transition-colors" href="#biyografi">Biyografi</a>
+              <a className="hover:text-white transition-colors" href="#calismalarim">Çalışmalarım</a>
+              <a className="hover:text-white transition-colors" href="#kultur-sanat">Kültür &amp; Sanat</a>
+              <a className="hover:text-white transition-colors" href="#yetkinlikler">Yetkinlikler</a>
+              <a className="hover:text-white transition-colors" href="#iletisim">İletişim</a>
               <Link className="hover:text-secondary transition-colors" href="/destek">Destek</Link>
             </div>
 
             <div className="flex items-center gap-4">
-              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://github.com/ahmetyasinaktrkoseakut-ui" target="_blank" rel="noreferrer">
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://github.com/ahmetyasinaktrkoseakut-ui" target="_blank" rel="noreferrer" aria-label="GitHub">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
               </a>
-              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" target="_blank" rel="noreferrer">
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </a>
-              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="https://www.instagram.com/ahmet_y_akturk_61/" target="_blank" rel="noreferrer">
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="https://www.instagram.com/ahmet_y_akturk_61/" target="_blank" rel="noreferrer" aria-label="Instagram">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
               </a>
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-text-dim">
+          <div className="mt-8 pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-dim">
             <p>&copy; 2026 Ahmet Yasin Aktürk. Tüm hakları saklıdır.</p>
-            <p className="text-text-muted">Next-Gen Portfolio &amp; Digital Experience</p>
+            <p className="text-text-muted">Kişisel Web Portfolyosu</p>
           </div>
         </div>
       </footer>
