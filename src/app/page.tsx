@@ -14,8 +14,6 @@ import {
   Code2,
   Cpu,
   Sparkles,
-  GraduationCap,
-  Zap,
   Mail,
   MapPin
 } from "lucide-react";
@@ -256,57 +254,12 @@ export default function Home() {
                 <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full mt-3"></div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                {/* Sol Kart: Akademik & Mühendislik Odakları */}
-                <div className="lg:col-span-5 rounded-2xl bg-surface-container-low border border-white/[0.08] p-8 flex flex-col justify-between shadow-xl relative overflow-hidden">
-                  <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-primary-container/15 blur-[80px]"></div>
-                  
-                  <div className="space-y-6 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-white/[0.08] flex items-center justify-center text-primary shadow-sm">
-                      <GraduationCap className="w-6 h-6" />
-                    </div>
-                    
-                    <div>
-                      <h3 className="font-display text-xl text-white font-semibold">Akademik &amp; Mühendislik Disiplini</h3>
-                      <p className="text-sm text-text-muted mt-2 leading-relaxed">
-                        Eskişehir Osmangazi Üniversitesi bünyesindeki mühendislik mantalitesiyle yazılım ekosistemindeki güncel teknolojilere yön veriyorum.
-                      </p>
-                    </div>
-
-                    <div className="space-y-3 pt-2">
-                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
-                        <Code2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-semibold text-white">Modern Web &amp; Mobil Mimari</p>
-                          <p className="text-xs text-text-dim mt-0.5">Yüksek performanslı, temiz ve ölçeklenebilir kod yapısı</p>
-                        </div>
-                      </div>
-
-                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
-                        <Cpu className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-semibold text-white">Yapay Zeka &amp; Büyük Dil Modelleri</p>
-                          <p className="text-xs text-text-dim mt-0.5">Otonom LLM sistemleri ve pratik AI ajan iş akışları</p>
-                        </div>
-                      </div>
-
-                      <div className="p-3.5 rounded-xl bg-surface-container-lowest/80 border border-white/[0.04] flex items-start gap-3">
-                        <Sparkles className="w-5 h-5 text-tertiary shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-semibold text-white">Estetik ve Hız Dengesi</p>
-                          <p className="text-xs text-text-dim mt-0.5">Kullanıcıyı yormayan, sezgisel ve modern arayüz tasarımı</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Sağ Kart: Detaylı Biyografi Metni */}
-                <div className="lg:col-span-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 lg:p-10 flex flex-col justify-center shadow-xl space-y-6">
-                  <p className="text-base text-on-surface leading-relaxed">
+              <div className="w-full">
+                <div className="rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 lg:p-12 shadow-xl space-y-6">
+                  <p className="text-base sm:text-lg text-on-surface leading-relaxed">
                     Eskişehir Osmangazi Üniversitesi'ndeki akademik yolculuğumla eş zamanlı olarak, karmaşık problemleri modern teknolojilerle temiz kullanıcı deneyimlerine dönüştürüyorum. Yüksek performanslı web ve mobil uygulamalar inşa ederken, kodun işlevselliğine ve sürekli yeni teknolojiler öğrenmeye odaklanıyorum.
                   </p>
-                  <p className="text-base text-text-muted leading-relaxed">
+                  <p className="text-base sm:text-lg text-text-muted leading-relaxed">
                     Geleneksel yazılım geliştirmeyi bir adım ileriye taşıyarak yapay zeka araçlarını ve dil modellerini iş akışıma doğrudan entegre ediyorum. Yeni projeler geliştirmekle kalmıyor, gelişmiş AI sistemlerini kullanarak görsel, işitsel ve metinsel içerik üretimleri gerçekleştiriyorum. Kodun mantıksal derinliğini yapay zekanın sunduğu dinamik vizyonla birleştirerek uçtan uca, yenilikçi dijital çözümler tasarlıyorum.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-3">
