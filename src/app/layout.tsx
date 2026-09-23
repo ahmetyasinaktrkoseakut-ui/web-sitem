@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Alex_Brush } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
+import { VisitorNotifier } from "@/components/VisitorNotifier";
 
-const geistSans = Geist({
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+});
+
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
-
-const alexBrush = Alex_Brush({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-script",
-});
-
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ahmetyasinakturk.com'),
@@ -58,8 +60,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { VisitorNotifier } from "@/components/VisitorNotifier";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,9 +68,9 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${geistSans.variable} ${geistMono.variable} ${alexBrush.variable} scroll-smooth antialiased`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth antialiased`}
     >
-      <body className="bg-background text-foreground font-sans min-h-screen selection:bg-accent-purple/30 selection:text-purple-200">
+      <body className="bg-surface-base text-on-surface font-sans min-h-screen selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
         <VisitorNotifier />
         {children}
         <Analytics />

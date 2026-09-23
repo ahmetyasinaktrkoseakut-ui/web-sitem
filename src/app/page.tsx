@@ -1,23 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  Terminal, 
-  Mail, 
-  ExternalLink, 
-  Send, 
-  CheckCircle2, 
-  Menu, 
-  X, 
-  Cpu, 
-  Layers, 
-  Code2, 
-  Sparkles,
-  ArrowRight
+  ArrowRight,
+  ExternalLink,
+  Send,
+  CheckCircle2,
+  Menu,
+  X,
+  LifeBuoy
 } from "lucide-react";
-import { ThreeDCard } from "@/components/ThreeDCard";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +19,7 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,10 +28,10 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
-    const revealElements = document.querySelectorAll(".reveal, .reveal-3d");
+    const revealElements = document.querySelectorAll(".reveal");
     revealElements.forEach((el) => observer.observe(el));
 
     return () => {
@@ -55,8 +49,6 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
-      // E-postanıza mesaj düşmesi için Formspree API entegrasyonu.
-      // E-postanız olan ahmet.41yasin@gmail.com adresine yönlendirilmiştir.
       const response = await fetch("https://formspree.io/f/xkoeyqwl", { 
         method: "POST",
         headers: {
@@ -81,685 +73,851 @@ export default function Home() {
       setIsSubmitting(false);
     }
 
-    // Toast'u 5 saniye sonra kapat
     setTimeout(() => {
       setFormSubmitted(false);
-    }, 5000);
+    }, 6000);
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-accent-purple/30 selection:text-purple-200 overflow-hidden">
+    <div className="bg-surface-base font-sans text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen relative overflow-x-hidden">
       
-      {/* Arka Plan Glow Efektleri */}
-      <div className="ambient-glow-1"></div>
-      <div className="ambient-glow-2"></div>
-
-      {/* 3D Perspektif Izgara Arka Planı */}
-      <div className="grid-3d-wrap">
-        <div className="grid-3d"></div>
+      {/* Ambient Parlama Efektleri */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -top-40 left-1/4 h-[550px] w-[550px] rounded-full bg-accent-violet-glow blur-[128px]"></div>
+        <div className="absolute top-1/3 -right-32 h-[450px] w-[450px] rounded-full bg-accent-cyan-glow blur-[140px]"></div>
       </div>
 
-      {/* Yüzen 3D Cam Küreler */}
-      <div className="absolute top-[20vh] left-[4%] w-20 h-20 glass-sphere sphere-float-slow opacity-50 hidden md:block" />
-      <div className="absolute top-[55vh] right-[6%] w-28 h-28 glass-sphere sphere-float-fast opacity-40 hidden md:block" />
-      <div className="absolute top-[130vh] left-[8%] w-16 h-16 glass-sphere sphere-float-medium opacity-30 hidden md:block" />
-      <div className="absolute top-[195vh] right-[4%] w-32 h-32 glass-sphere sphere-float-slow opacity-50 hidden md:block" />
-      <div className="absolute top-[265vh] left-[3%] w-24 h-24 glass-sphere sphere-float-medium opacity-45 hidden md:block" />
-      <div className="absolute top-[320vh] right-[5%] w-20 h-20 glass-sphere sphere-float-fast opacity-35 hidden md:block" />
-
       {/* Navigasyon Header */}
-      <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800/40 bg-zinc-950/65 backdrop-blur-md transition-all duration-300">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#hero" className="flex flex-col items-start leading-none group py-1 select-none">
-            <span className="text-xs sm:text-sm font-black tracking-[0.1em] text-transparent [-webkit-text-stroke:0.8px_#a855f7] drop-shadow-[0_0_4px_rgba(168,85,247,0.7)] font-sans uppercase">
-              AHMET YASİN
-            </span>
-            <span className="text-[10px] sm:text-xs font-script text-white/90 self-end -mt-0.5 ml-3 transform -rotate-2">
-              Aktürk
-            </span>
-          </a>
+      <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-xl bg-surface-glass/85 border-b border-white/[0.08] shadow-[0_1px_12px_rgba(0,0,0,0.4)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-6">
           
+          <Link href="#hero" className="flex items-center gap-3 group select-none">
+            <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">
+              AHMET YASİN AKTÜRK
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container font-mono text-[11px] text-secondary">
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              DEV &amp; AI
+            </span>
+          </Link>
+
           {/* Masaüstü Navigasyon */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-medium text-zinc-400">
-            <a href="#about" className="hover:text-zinc-100 transition-colors duration-200">Biyografi</a>
-            <a href="#projects" className="hover:text-zinc-100 transition-colors duration-200">Çalışmalarım</a>
-            <a href="#culture-art" className="hover:text-zinc-100 transition-colors duration-200">Kültür & Sanat</a>
-            <a href="#skills" className="hover:text-zinc-100 transition-colors duration-200">Yetkinlikler</a>
-            <a href="#contact" className="hover:text-zinc-100 transition-colors duration-200">İletişim</a>
-            <Link href="/destek" className="hover:text-purple-300 transition-colors duration-200 font-mono text-xs px-2.5 py-1 rounded bg-accent-purple/10 border border-accent-purple/30">Destek</Link>
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium">
+            <a href="#biyografi" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Biyografi</a>
+            <a href="#calismalarim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Çalışmalarım</a>
+            <a href="#kultur-sanat" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Kültür &amp; Sanat</a>
+            <a href="#yetkinlikler" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">Yetkinlikler</a>
+            <a href="#iletisim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 transition-colors rounded-lg">İletişim</a>
+            <Link href="/destek" className="px-3 py-1.5 text-secondary hover:text-white hover:bg-surface-container/80 transition-colors rounded-lg font-mono text-xs flex items-center gap-1">
+              <LifeBuoy className="w-3.5 h-3.5" />
+              Destek
+            </Link>
           </nav>
 
-          {/* Mobil Menü Butonu */}
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none"
-            aria-label="Menüyü Aç"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* CTA ve Profil Avatar */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            <a 
+              href="#iletisim" 
+              className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-display text-sm font-semibold transition-all shadow-[0_0_20px_rgba(183,109,255,0.35)] hover:shadow-[0_0_28px_rgba(183,109,255,0.6)]"
+            >
+              İletişime Geç
+            </a>
+            <div className="w-9 h-9 rounded-full overflow-hidden border border-white/20 bg-surface-container flex items-center justify-center">
+              <Image 
+                src="/ahmet-yasin.jpg" 
+                alt="Ahmet Yasin Aktürk" 
+                width={36} 
+                height={36} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Mobil Menü Butonu */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 text-on-surface-variant hover:text-white"
+              aria-label="Menüyü Aç"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
         </div>
 
-        {/* Mobil Navigasyon Paneli */}
+        {/* Mobil Menü Paneli */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800/80 bg-zinc-950 px-6 py-4 space-y-4 text-zinc-400 animate-fadeIn">
-            <a 
-              href="#about" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block hover:text-white transition-colors duration-200"
-            >
-              Biyografi
-            </a>
-            <a 
-              href="#projects" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block hover:text-white transition-colors duration-200"
-            >
-              Çalışmalarım
-            </a>
-            <a 
-              href="#culture-art" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block hover:text-white transition-colors duration-200"
-            >
-              Kültür & Sanat
-            </a>
-            <a 
-              href="#skills" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block hover:text-white transition-colors duration-200"
-            >
-              Yetkinlikler
-            </a>
-            <a 
-              href="#contact" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block hover:text-white transition-colors duration-200"
-            >
-              İletişim
-            </a>
-            <Link 
-              href="/destek" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block text-accent-purple hover:text-white transition-colors duration-200 font-mono text-xs"
-            >
-              Fırtına AI Destek
-            </Link>
+          <div className="lg:hidden border-b border-white/[0.08] bg-surface-container-lowest/95 backdrop-blur-xl px-6 py-5 space-y-4 text-sm font-medium">
+            <a href="#biyografi" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Biyografi</a>
+            <a href="#calismalarim" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Çalışmalarım</a>
+            <a href="#kultur-sanat" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Kültür &amp; Sanat</a>
+            <a href="#yetkinlikler" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Yetkinlikler</a>
+            <a href="#iletisim" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">İletişim</a>
+            <Link href="/destek" onClick={() => setIsMobileMenuOpen(false)} className="block text-secondary hover:text-white">Fırtına AI Destek Merkezi</Link>
           </div>
         )}
       </header>
 
       {/* Ana İçerik */}
-      <main className="max-w-4xl mx-auto px-6 relative z-10 pt-16">
-        
-        {/* Hero Section */}
-        <section id="hero" className="min-h-[85vh] flex flex-col justify-center py-20 relative text-center">
-          <div className="space-y-8 max-w-3xl mx-auto">
-
-            {/* Ortalanmış Profil Fotoğrafı ve 3D Tilt Hareketi */}
-            <ThreeDCard 
-              glowColor="rgba(168, 85, 247, 0.35)"
-              className="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full p-1 bg-gradient-to-tr from-accent-purple via-zinc-800 to-accent-blue shadow-[0_0_30px_rgba(168,85,247,0.35)] select-none hover:shadow-[0_0_40px_rgba(168,85,247,0.55)] transition-all duration-500 hover:scale-[1.03] group preserve-3d intro-3d-photo"
-            >
-              <div className="w-full h-full rounded-full overflow-hidden border border-zinc-950/80 bg-zinc-900 translate-z-md">
-                <Image 
-                  src="/ahmet-yasin.jpg" 
-                  alt="Ahmet Yasin Aktürk" 
-                  width={176}
-                  height={176}
-                  className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500"
-                  priority
-                />
-              </div>
-              {/* Arka plan glow efekti */}
-              <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-tr from-accent-purple to-accent-blue opacity-50 blur-md"></div>
-            </ThreeDCard>
-
-            {/* Neon İsim ve El Yazısı Soyisim Bloğu */}
-            <div className="relative inline-block text-center mx-auto select-none pb-4 intro-3d-title">
-              <h1 className="text-5xl sm:text-7xl font-extrabold tracking-[0.12em] text-transparent [-webkit-text-stroke:1.8px_#a855f7] drop-shadow-[0_0_20px_rgba(168,85,247,0.9)] uppercase font-sans leading-none translate-z-md">
-                AHMET YASİN
-              </h1>
-              <span className="absolute -bottom-3 right-0 sm:right-4 font-script text-4xl sm:text-5xl text-white/95 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] transform -rotate-6 tracking-wider translate-z-xl">
-                Aktürk
-              </span>
-            </div>
-
-            {/* Ünvan ve Açıklama Metni */}
-            <div className="space-y-4 pt-2 intro-3d-subtitle">
-              <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-purple-400 to-accent-purple inline-block">
-                Web - Mobil Uygulama Geliştirici & Yapay Zeka İçerik Üreticisi
-              </h2>
-              <p className="text-zinc-350 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
-              </p>
-            </div>
-
-            {/* Sosyal Medya & Eylem Butonları */}
-            <div className="pt-4 flex flex-wrap gap-4 items-center justify-center intro-3d-stagger">
-              <a 
-                href="#contact" 
-                className="px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 font-medium hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-lg shadow-white/5 text-sm"
-              >
-                İletişime Geç
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <a 
-                href="https://github.com/ahmetyasinaktrkoseakut-ui" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="px-5 py-3 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-sm"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
-              </a>
-
-              <a 
-                href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="px-5 py-3 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-sm"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                LinkedIn
-              </a>
-
-              <a 
-                href="https://www.instagram.com/ahmet_y_akturk_61/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="px-5 py-3 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-sm"
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                Instagram
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Hakkımda (About) Section */}
-        <section id="about" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
-          <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-6">Biyografi</h3>
-          
-          <div className="max-w-3xl space-y-6 text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
-            <p>
-              Eskişehir Osmangazi Üniversitesi'ndeki akademik yolculuğumla eş zamanlı olarak, karmaşık problemleri modern teknolojilerle temiz kullanıcı deneyimlerine dönüştürüyorum. Yüksek performanslı web ve mobil uygulamalar inşa ederken, kodun işlevselliğine ve sürekli yeni teknolojiler öğrenmeye odaklanıyorum.
-            </p>
-            <p>
-              Geleneksel yazılım geliştirmeyi bir adım ileriye taşıyarak yapay zeka araçlarını ve dil modellerini iş akışıma doğrudan entegre ediyorum. Yeni projeler geliştirmekle kalmıyor, gelişmiş AI sistemlerini kullanarak görsel, işitsel ve metinsel içerik üretimleri gerçekleştiriyorum. Kodun mantıksal derinliğini yapay zekanın sunduğu dinamik vizyonla birleştirerek uçtan uca, yenilikçi dijital çözümler tasarlıyorum.
-            </p>
-          </div>
-        </section>
-
-        {/* Projeler Section */}
-        <section id="projects" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
-          <div className="space-y-2 mb-10">
-            <h4 className="text-3xl font-bold tracking-tight text-white">Çalışmalarım</h4>
-            <p className="text-zinc-400 text-sm font-light leading-relaxed">
-              Geliştirdiğim yapay zeka sistemleri, kurumsal uygulama ve hayata geçirdiğim ticari dijital web girişimleri
-            </p>
-          </div>
-
-          {/* Projeler Bento Grid Yapısı */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <main className="relative z-10 w-full pt-20">
+        <div className="flex flex-col w-full">
+          <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-24">
             
-            {/* 1. Fırtına AI */}
-            <Link href="/firtina-ai" className="md:col-span-2 block group">
-              <ThreeDCard 
-                glowColor="rgba(168, 85, 247, 0.2)" 
-                className="glass-card rounded-2xl overflow-hidden flex flex-col h-full hover:border-accent-purple/50 transition-all duration-300 preserve-3d cursor-pointer"
-              >
-                <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4 preserve-3d">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+            {/* HERO SECTION */}
+            <section id="hero" className="relative pt-12 lg:pt-20 flex flex-col items-center text-center">
+              {/* Glow Underlay behind Avatar */}
+              <div className="absolute -top-10 w-72 h-72 rounded-full bg-primary-container/20 blur-[100px] pointer-events-none"></div>
+
+              {/* Profile Avatar Container */}
+              <div className="relative mb-6 group">
+                <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-primary via-secondary to-primary-container opacity-75 blur-md group-hover:opacity-100 transition-all duration-700 animate-pulse"></div>
+                <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full p-1 bg-surface-container-lowest overflow-hidden shadow-2xl">
                   <Image 
-                    src="/firtina-ai.png" 
-                    alt="Fırtına AI"
-                    width={512}
-                    height={512}
-                    className="h-full w-auto object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl relative z-10 translate-z-lg"
+                    src="/ahmet-yasin.jpg" 
+                    alt="Ahmet Yasin Aktürk" 
+                    width={144} 
+                    height={144} 
+                    priority
+                    className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500 scale-105"
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-grow justify-between space-y-3 translate-z-md">
-                  <div className="space-y-2">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <h5 className="text-lg font-bold text-white group-hover:text-accent-purple transition-colors">1. Fırtına AI</h5>
-                      <div className="flex items-center gap-1.5 select-none translate-z-sm">
-                        {/* App Store Rozeti */}
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-purple/40 hover:text-white transition-all">
-                          <svg className="w-3 h-3 fill-current text-accent-purple" viewBox="0 0 24 24">
-                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.57 2.94-1.39z"/>
-                          </svg>
-                          App Store
-                        </span>
-                        {/* Google Play Rozeti */}
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/90 border border-zinc-800 text-[10px] font-bold text-zinc-200 shadow-sm hover:border-accent-blue/40 hover:text-white transition-all">
-                          <svg className="w-2.5 h-2.5 fill-current text-accent-blue" viewBox="0 0 24 24">
-                            <path d="M3.609 1.814L13.792 12 3.61 22.186A2.227 2.227 0 0 1 3 20.573V3.427c0-.623.235-1.196.609-1.613zm11.29 9.172l3.417-3.417a2.203 2.203 0 0 1 0 3.124l-3.417 3.417a2.203 2.203 0 0 1 0-3.124zm-1.89-1.89L4.478 2.656C4.851 2.239 5.424 2 6.047 2c.623 0 1.196.235 1.613.609l5.349 5.349zm0 5.808l-5.349 5.349A2.227 2.227 0 0 1 6.047 22c-.623 0-1.196-.235-1.613-.609l8.571-6.442z"/>
-                          </svg>
-                          Google Play
+                {/* Pulse Status Badge */}
+                <div className="absolute bottom-1 right-2 flex items-center justify-center p-1.5 rounded-full bg-surface-container-lowest border border-white/[0.08] shadow-lg">
+                  <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping absolute opacity-75"></span>
+                  <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 relative"></span>
+                </div>
+              </div>
+
+              {/* Overline Tag */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high/80 border border-white/[0.08] backdrop-blur-md mb-4">
+                <span className="font-mono text-secondary text-xs">/&gt;</span>
+                <span className="font-mono text-xs text-secondary tracking-widest uppercase">Portfolio &amp; Lab 2026</span>
+              </div>
+
+              {/* Main Display Title */}
+              <div className="relative mb-4 max-w-4xl">
+                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-on-surface font-extrabold leading-tight">
+                  AHMET YASİN <span className="bg-gradient-to-r from-primary via-primary-fixed-dim to-secondary bg-clip-text text-transparent font-extrabold">AKTÜRK</span>
+                </h1>
+              </div>
+
+              {/* Role Heading */}
+              <h2 className="font-display text-xl sm:text-2xl font-semibold text-secondary-fixed max-w-2xl mb-4 leading-snug">
+                Web - Mobil Uygulama Geliştirici &amp; Yapay Zeka İçerik Üreticisi
+              </h2>
+
+              {/* Description / Value Prop */}
+              <p className="text-base sm:text-lg text-text-muted max-w-3xl mb-8 leading-relaxed font-normal">
+                Kullanıcı odaklı modern web ve mobil uygulamalar geliştiriyor; estetik, hız ve yüksek performansı bir araya getiriyorum. Yazılım geliştirme süreçlerimi gelişmiş yapay zeka içerik üretme teknolojileriyle birleştirerek yenilikçi dijital çözümler tasarlıyorum.
+              </p>
+
+              {/* Action Button Group */}
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a 
+                  href="#iletisim" 
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-display text-sm font-semibold shadow-[0_0_25px_rgba(183,109,255,0.4)] hover:shadow-[0_0_35px_rgba(183,109,255,0.7)] hover:scale-105 transition-all"
+                >
+                  <span>İletişime Geç</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+
+                <a 
+                  href="https://github.com/ahmetyasinaktrkoseakut-ui" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                >
+                  <svg className="w-4 h-4 fill-current text-primary" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  <span>GitHub</span>
+                </a>
+
+                <a 
+                  href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                >
+                  <svg className="w-4 h-4 fill-current text-secondary" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  <span>LinkedIn</span>
+                </a>
+
+                <a 
+                  href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-mono text-xs transition-all hover:scale-105 shadow-md border border-white/[0.08]"
+                >
+                  <svg className="w-4 h-4 fill-current text-primary-fixed-dim" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
+                  <span>Instagram</span>
+                </a>
+              </div>
+
+              {/* Metric Highlights Bento Strip (Görsel 2) */}
+              <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-6">
+                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
+                  <span className="font-display text-3xl font-bold text-primary">05+</span>
+                  <span className="font-mono text-xs text-text-dim mt-1">Yıllık İlgi &amp; Geliştirme</span>
+                </div>
+                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
+                  <span className="font-display text-3xl font-bold text-secondary">100%</span>
+                  <span className="font-mono text-xs text-text-dim mt-1">AI Destekli Workflow</span>
+                </div>
+                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
+                  <span className="font-display text-3xl font-bold text-tertiary">3+</span>
+                  <span className="font-mono text-xs text-text-dim mt-1">Canlı Ticari Platform</span>
+                </div>
+                <div className="p-5 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-lg flex flex-col items-center justify-center text-center">
+                  <span className="font-display text-3xl font-bold text-primary-fixed">1</span>
+                  <span className="font-mono text-xs text-text-dim mt-1">Basılı Edebi Eser</span>
+                </div>
+              </div>
+            </section>
+
+            {/* BIOGRAPHY SECTION */}
+            <section id="biyografi" className="relative scroll-mt-24 reveal">
+              <div className="mb-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// ARKA PLAN</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Biyografi</h2>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                {/* Visual / Code Column */}
+                <div className="lg:col-span-5 rounded-2xl bg-surface-container-low border border-white/[0.08] p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                  <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-primary-container/15 blur-[80px]"></div>
+                  <div className="space-y-4 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-surface-container-high border border-white/[0.08] flex items-center justify-center text-secondary">
+                      <span className="font-mono text-xl font-bold">ES</span>
+                    </div>
+                    <h3 className="font-display text-lg text-on-surface font-semibold">Akademik &amp; Mühendislik Disiplini</h3>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      Eskişehir Osmangazi Üniversitesi bünyesindeki mühendislik mantalitesiyle yazılım ekosistemindeki güncel paradigmalara yön veriyorum.
+                    </p>
+                  </div>
+
+                  {/* Code Artifact Card (Görsel 5) */}
+                  <div className="mt-8 p-4 rounded-xl bg-surface-container-lowest border border-white/[0.06] text-text-dim font-mono text-xs space-y-1 shadow-inner relative z-10">
+                    <div className="flex items-center justify-between pb-2 text-on-surface-variant font-mono text-[11px] border-b border-white/[0.06]">
+                      <span className="text-secondary font-medium">~/profile/vision.config.ts</span>
+                      <span className="text-xs text-text-muted">ts</span>
+                    </div>
+                    <p className="pt-1"><span className="text-primary font-semibold">const</span> developer = &#123;</p>
+                    <p className="pl-4">core: <span className="text-tertiary">"Full-Stack Web &amp; Mobile"</span>,</p>
+                    <p className="pl-4">intelligence: <span className="text-secondary">"Autonomous LLM Systems"</span>,</p>
+                    <p className="pl-4">drive: <span className="text-primary-fixed-dim">"High Aesthetics + High Speed"</span></p>
+                    <p>&#125;;</p>
+                  </div>
+                </div>
+
+                {/* Narrative Column */}
+                <div className="lg:col-span-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 lg:p-10 flex flex-col justify-center shadow-xl space-y-6">
+                  <p className="text-base text-on-surface leading-relaxed">
+                    Eskişehir Osmangazi Üniversitesi'ndeki akademik yolculuğumla eş zamanlı olarak, karmaşık problemleri modern teknolojilerle temiz kullanıcı deneyimlerine dönüştürüyorum. Yüksek performanslı web ve mobil uygulamalar inşa ederken, kodun işlevselliğine ve sürekli yeni teknolojiler öğrenmeye odaklanıyorum.
+                  </p>
+                  <p className="text-base text-text-muted leading-relaxed">
+                    Geleneksel yazılım geliştirmeyi bir adım ileriye taşıyarak yapay zeka araçlarını ve dil modellerini iş akışıma doğrudan entegre ediyorum. Yeni projeler geliştirmekle kalmıyor, gelişmiş AI sistemlerini kullanarak görsel, işitsel ve metinsel içerik üretimleri gerçekleştiriyorum. Kodun mantıksal derinliğini yapay zekanın sunduğu dinamik vizyonla birleştirerek uçtan uca, yenilikçi dijital çözümler tasarlıyorum.
+                  </p>
+                  <div className="pt-4 flex flex-wrap gap-3">
+                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-primary border border-white/[0.06]">
+                      &bull; Temiz Mimari
+                    </span>
+                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-secondary border border-white/[0.06]">
+                      &bull; AI Co-Creation
+                    </span>
+                    <span className="px-3.5 py-1.5 rounded-lg bg-surface-container font-mono text-xs text-tertiary border border-white/[0.06]">
+                      &bull; Performans Odaklı
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* WORKS / ÇALIŞMALARIM SECTION */}
+            <section id="calismalarim" className="relative scroll-mt-24 reveal">
+              <div className="mb-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">// PORTFOLIO</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Çalışmalarım</h2>
+                <p className="text-sm text-text-muted mt-1">
+                  Geliştirdiğim yapay zeka sistemleri, kurumsal uygulama ve hayata geçirdiğim ticari dijital web girişimleri
+                </p>
+              </div>
+
+              {/* Primary Projects */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                {/* 1. Fırtına AI Card */}
+                <div className="rounded-2xl bg-surface-container-low border border-white/[0.08] p-7 shadow-xl hover:shadow-[0_0_30px_-5px_rgba(183,109,255,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                  <div>
+                    <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-surface-container-lowest border border-white/[0.06] flex items-center justify-center p-4">
+                      <Image 
+                        src="/firtina-ai.png" 
+                        alt="Fırtına AI" 
+                        width={512} 
+                        height={512} 
+                        className="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 rounded-xl"
+                      />
+                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-md bg-surface-container-lowest/80 backdrop-blur-md font-mono text-xs text-secondary font-semibold border border-white/[0.08]">
+                          Mobil &amp; AI
                         </span>
                       </div>
                     </div>
-                    <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-mono text-xs text-primary font-bold">PROJE 01</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-text-dim"></span>
+                      <span className="font-mono text-xs text-emerald-400">Canlıda</span>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">
+                      1. Fırtına AI
+                    </h3>
+                    <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
                       Gelişmiş ve ücretsiz yapay zeka araçlarını tek merkezde toplayan, ve kendi içinden kullanma imkanı veren kullanıcı odaklı yeni nesil yapay zeka uygulaması.
                     </p>
                   </div>
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 bg-surface-container-lowest/40 -mx-7 -mb-7 p-6 rounded-b-2xl border-t border-white/[0.06]">
+                    <div className="flex items-center gap-2.5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-on-surface border border-white/[0.06]">
+                        App Store
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-on-surface border border-white/[0.06]">
+                        Google Play
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Link href="/destek" className="text-xs font-mono text-text-dim hover:text-white transition-colors">
+                        Destek
+                      </Link>
+                      <Link href="/firtina-ai" className="inline-flex items-center gap-1 text-primary font-mono text-xs hover:underline">
+                        <span>İncele</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </ThreeDCard>
-            </Link>
 
-            {/* 2. ESOGÜ ABYS */}
-            <Link href="/esogu-abys" className="md:col-span-1 block group">
-              <ThreeDCard 
-                glowColor="rgba(6, 182, 212, 0.2)" 
-                className="glass-card rounded-2xl overflow-hidden flex flex-col h-full hover:border-accent-blue/50 transition-all duration-300 preserve-3d cursor-pointer"
-              >
-                <div className="relative h-56 w-full bg-zinc-950/60 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center p-4 preserve-3d">
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-                  <Image 
-                    src="/esogu-abys.png" 
-                    alt="ESOGÜ ABYS Akreditasyon Sistemi"
-                    width={773}
-                    height={510}
-                    className="max-h-full max-w-full object-contain opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 rounded-xl shadow-2xl border border-zinc-800/50 relative z-10 translate-z-lg"
-                  />
-                </div>
-                <div className="p-6 flex flex-col flex-grow justify-between space-y-3 translate-z-md">
-                  <div className="space-y-2">
-                    <h5 className="text-lg font-bold text-white group-hover:text-accent-blue transition-colors">2. ESOGÜ ABYS</h5>
-                    <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                {/* 2. ESOGÜ ABYS Card */}
+                <div className="rounded-2xl bg-surface-container-low border border-white/[0.08] p-7 shadow-xl hover:shadow-[0_0_30px_-5px_rgba(76,215,246,0.25)] transition-all duration-300 flex flex-col justify-between group">
+                  <div>
+                    <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-surface-container-lowest border border-white/[0.06] flex items-center justify-center p-4">
+                      <Image 
+                        src="/esogu-abys.png" 
+                        alt="ESOGÜ ABYS Akreditasyon Sistemi" 
+                        width={773} 
+                        height={510} 
+                        className="max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500 rounded-xl border border-white/[0.08]"
+                      />
+                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-md bg-surface-container-lowest/80 backdrop-blur-md font-mono text-xs text-tertiary font-semibold border border-white/[0.08]">
+                          Kurumsal SaaS
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-mono text-xs text-secondary font-bold">PROJE 02</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-text-dim"></span>
+                      <span className="font-mono text-xs text-secondary">Akademik</span>
+                    </div>
+                    <h3 className="font-display text-2xl font-bold text-on-surface mb-3 group-hover:text-secondary transition-colors">
+                      2. ESOGÜ ABYS
+                    </h3>
+                    <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
                       Kurumların kalite ve akreditasyon süreçlerini dijitalleştiren, modern yazılım mimarisine sahip kurumsal veri ve süreç yönetim sistemi.
                     </p>
                   </div>
-                </div>
-              </ThreeDCard>
-            </Link>
-
-            {/* 3. Kurulan İşletmeler & Platformlar */}
-            <ThreeDCard 
-              glowColor="rgba(168, 85, 247, 0.15)"
-              className="glass-card rounded-2xl p-6 flex flex-col h-full justify-between md:col-span-3 space-y-6 hover:border-accent-purple/40 transition-all duration-300 preserve-3d"
-            >
-              <div className="flex items-start space-x-4 translate-z-md">
-                <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-accent-purple shadow-[0_0_10px_rgba(168,85,247,0.2)]">
-                  <Layers className="w-6 h-6" />
-                </div>
-                <div className="space-y-1">
-                  <h5 className="text-lg font-bold text-white">3. Kurulan İşletmeler & Platformlar</h5>
-                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
-                    Farklı sektörlerin ihtiyaçlarına yönelik uçtan uca tasarlayıp canlıya aldığım ticari web siteleri:
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 translate-z-sm">
-                <a 
-                  href="https://hanyoresellezzetler.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
-                >
-                  <div className="flex items-center justify-between w-full text-xs font-mono">
-                    <span className="font-semibold">Han Yöresel Lezzetler</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">Next.js & Tailwind</span>
-                </a>
-                <a 
-                  href="https://bizimkafecayko.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
-                >
-                  <div className="flex items-center justify-between w-full text-xs font-mono">
-                    <span className="font-semibold">Bizim Kafe Çayko</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">React & Firebase</span>
-                </a>
-                <a 
-                  href="https://deft-cucurucho-cf2b29.netlify.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex flex-col justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-accent-purple/50 text-zinc-300 hover:text-white transition-all group space-y-2"
-                >
-                  <div className="flex items-center justify-between w-full text-xs font-mono">
-                    <span className="font-semibold">Müşteri Portali</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <span className="text-[10px] text-zinc-500 font-sans group-hover:text-zinc-400 transition-colors">HTML, CSS & JS</span>
-                </a>
-              </div>
-            </ThreeDCard>
-
-          </div>
-        </section>
-
-        {/* Kültür ve Sanat Section */}
-        <section id="culture-art" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
-          <div className="space-y-2 mb-10">
-            <h4 className="text-3xl font-bold tracking-tight text-white">Kültür ve Sanat</h4>
-            <p className="text-zinc-400 text-sm font-light leading-relaxed">
-              Edebi çalışmalarım, kültürel projelerim ve yayımlanmış eserlerim
-            </p>
-          </div>
-
-          {/* Kitap Bento Grid Yapısı */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-            
-            {/* Kitap Kapak Görseli */}
-            <ThreeDCard 
-              glowColor="rgba(16, 185, 129, 0.15)"
-              className="glass-card rounded-2xl overflow-hidden p-6 flex justify-center items-center group transition-all duration-300 md:col-span-1 preserve-3d"
-            >
-              <div className="relative rounded-lg overflow-hidden border border-zinc-800/80 shadow-[0_0_20px_rgba(0,0,0,0.6)] max-w-[200px] w-full translate-z-lg">
-                <Image 
-                  src="/filistine-vefasizlik.jpg" 
-                  alt="Filistin'e Vefasızlık Kitap Kapağı"
-                  width={200}
-                  height={300}
-                  className="w-full h-auto object-cover scale-100 group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-            </ThreeDCard>
-
-            {/* Kitap Detayları ve Açıklama */}
-            <ThreeDCard 
-              glowColor="rgba(168, 85, 247, 0.15)"
-              className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between h-full space-y-6 transition-all duration-300 preserve-3d"
-            >
-              <div className="space-y-4 translate-z-md">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
-                  <div>
-                    <h5 className="text-xl font-bold text-white">Filistin'e Vefasızlık</h5>
-                    <p className="text-xs text-accent-purple font-mono mt-1">Yazar: Ahmet Yasin Aktürk</p>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-purple/10 border border-accent-purple/30 text-xs font-semibold text-purple-300">
-                    Şiir Kitabı / Kasım 2024
-                  </span>
-                </div>
-                
-                <p className="text-zinc-300 text-sm sm:text-base font-light leading-relaxed">
-                  Filistin'de yaşanan insani dramı, Gazze'deki direnişi ve İslam coğrafyasının bu zulüm karşısındaki sessizliğini mercek altına alan edebi bir çığlık. Eserdeki şiirler, Mescid-i Aksa'nın ve Filistin halkının yalnızlığını, Müslüman toplumların "vefasızlığını" ve duyarsızlığını sarsıcı bir dille ele almaktadır. 
-                </p>
-                <p className="text-zinc-400 text-sm font-light leading-relaxed">
-                  Bu eser, sadece edebi bir duruş sergilemekle kalmayıp aynı zamanda toplumsal bir farkındalık ve somut bir dayanışma amacı taşımaktadır.
-                </p>
-
-                <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center space-x-3 translate-z-sm">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0"></div>
-                  <span className="text-xs text-emerald-300 font-medium leading-relaxed">
-                    Kitabın satışından elde edilen tüm gelir Filistin'e yardım amaçlı bağışlanmaktadır.
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4 pt-2 translate-z-sm">
-                <a 
-                  href="https://cinius.shop/urun/filistine-vefasizlik/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-xs font-medium"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  Cinius Shop'ta İncele
-                </a>
-                <a 
-                  href="https://1000kitap.com/kitap/filistine-vefasizlik--458245" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all flex items-center gap-2 text-xs font-medium"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  1000Kitap'ta İncele
-                </a>
-              </div>
-            </ThreeDCard>
-
-          </div>
-        </section>
-
-        {/* Yetkinlikler (Skills) Section */}
-        <section id="skills" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
-          <h3 className="text-xs uppercase font-mono text-zinc-500 tracking-[0.2em] mb-4">Yetkinlikler</h3>
-          <h4 className="text-3xl font-bold text-white tracking-tight mb-10">Kullandığım Teknolojiler</h4>
-
-          {/* Yetenekler Bento Grid Yapısı */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* Kart 1: Full-Stack Web Geliştirme (Geniş Kart) */}
-            <ThreeDCard 
-              glowColor="rgba(168, 85, 247, 0.2)"
-              className="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col justify-between transition-all duration-300 group preserve-3d"
-            >
-              <div className="space-y-4 translate-z-md">
-                <h5 className="font-mono text-xs text-accent-purple border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <Code2 className="w-3.5 h-3.5" />
-                  Full-Stack Web Geliştirme
-                </h5>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">React & Next.js Arayüzleri</span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Modern Tailwind CSS Arayüzleri</span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner sm:col-span-2 translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent-purple shadow-[0_0_8px_rgba(168,85,247,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Supabase & Firebase Veritabanı Altyapısı</span>
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 bg-surface-container-lowest/40 -mx-7 -mb-7 p-6 rounded-b-2xl border-t border-white/[0.06]">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-high font-mono text-xs text-text-muted border border-white/[0.06]">
+                        Veri &amp; Kalite Mimari
+                      </span>
+                    </div>
+                    <Link href="/esogu-abys" className="inline-flex items-center gap-1 text-secondary font-mono text-xs hover:underline">
+                      <span>İncele</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 </div>
+
               </div>
-            </ThreeDCard>
 
-            {/* Kart 2: Yapay Zeka & Otomasyon (Dar Kart) */}
-            <ThreeDCard 
-              glowColor="rgba(6, 182, 212, 0.2)"
-              className="glass-card rounded-2xl p-6 md:col-span-1 flex flex-col justify-between transition-all duration-300 group preserve-3d"
-            >
-              <div className="space-y-4 translate-z-md">
-                <h5 className="font-mono text-xs text-accent-blue border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <Cpu className="w-3.5 h-3.5" />
-                  Yapay Zeka & Otomasyon
-                </h5>
-
-                <div className="space-y-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Prompt Engineering</span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-accent-blue shadow-[0_0_8px_rgba(6,182,212,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">Akıllı AI Agents Sistemleri</span>
-                  </div>
-                </div>
-              </div>
-            </ThreeDCard>
-
-            {/* Kart 3: AI İçerik Üretimi ve Sistemler (Tam Genişlik Kart) */}
-            <ThreeDCard 
-              glowColor="rgba(250, 204, 21, 0.15)"
-              className="glass-card rounded-2xl p-6 md:col-span-3 flex flex-col justify-between transition-all duration-300 group preserve-3d"
-            >
-              <div className="space-y-4 translate-z-md">
-                <h5 className="font-mono text-xs text-zinc-400 border-b border-zinc-850 pb-2 flex items-center gap-1.5 uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
-                  AI Medya & Entegrasyonlar
-                </h5>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">AI İçerik Üretimi (Görsel, İşitsel ve Metin)</span>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-zinc-950/40 border border-zinc-850/60 flex items-center space-x-3 shadow-inner translate-z-sm">
-                    <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0"></div>
-                    <span className="text-xs text-zinc-200 font-medium leading-relaxed">API Entegrasyonları ve Süreç Otomasyonu</span>
-                  </div>
-                </div>
-              </div>
-            </ThreeDCard>
-
-          </div>
-        </section>
-
-        {/* İletişim (Contact) Section */}
-        <section id="contact" className="py-20 border-t border-zinc-900 scroll-mt-16 reveal-3d">
-          <h4 className="text-3xl font-bold text-white tracking-tight mb-4">İletişim</h4>
-          <p className="text-zinc-400 font-light mb-10 max-w-lg leading-relaxed text-sm sm:text-base">
-            Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Form Alanı */}
-            <div className="md:col-span-2 relative">
-              <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">İsim Soyisim</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      required 
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm"
-                    />
+              {/* 3. Kurulan İşletmeler & Platformlar */}
+              <div className="rounded-2xl bg-surface-container-high/60 border border-white/[0.08] backdrop-blur-xl p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary font-mono text-lg font-bold">
+                    3
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">E-posta Adresi</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      required 
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm"
-                    />
+                    <h3 className="font-display text-xl font-bold text-on-surface">3. Kurulan İşletmeler &amp; Platformlar</h3>
+                    <p className="text-xs text-text-muted">Farklı sektörlerin ihtiyaçlarına yönelik uçtan uca tasarlayıp canlıya aldığım ticari web siteleri:</p>
                   </div>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-[11px] font-mono text-zinc-500 uppercase mb-2">Mesajınız</label>
-                  <textarea 
-                    id="message" 
-                    rows={5} 
-                    required 
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full bg-zinc-900/40 border border-zinc-800/80 focus:border-accent-purple text-zinc-200 px-4 py-3 rounded-lg outline-none transition-colors text-sm resize-none"
-                  ></textarea>
                 </div>
                 
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="px-6 py-3 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-950 font-medium transition-all w-full sm:w-auto text-sm flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  {isSubmitting ? "Gönderiliyor..." : "Mesajı Gönder"}
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </form>
-
-              {/* Toast Başarı Bildirimi */}
-              {formSubmitted && (
-                <div className="absolute top-0 left-0 w-full h-full bg-zinc-950/90 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center space-y-4 animate-fadeIn">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400" />
-                  <div className="text-center space-y-1">
-                    <h5 className="text-zinc-100 font-semibold text-lg">Mesajınız İletildi!</h5>
-                    <p className="text-zinc-400 text-xs sm:text-sm font-light">En kısa sürede size e-posta ile dönüş yapacağım. Teşekkürler!</p>
-                  </div>
-                  <button 
-                    onClick={() => setFormSubmitted(false)}
-                    className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-xs font-mono text-zinc-300"
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                  {/* Item 1: Han Yöresel Lezzetler */}
+                  <a 
+                    href="https://hanyoresellezzetler.vercel.app/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="p-6 rounded-xl bg-surface-container-low border border-white/[0.06] hover:bg-surface-bright transition-all group flex flex-col justify-between shadow-md"
                   >
-                    Yeni Mesaj Gönder
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Doğrudan İletişim Detayları */}
-            <div className="space-y-6">
-              <ThreeDCard 
-                glowColor="rgba(168, 85, 247, 0.15)"
-                className="glass-card rounded-xl p-6 space-y-5 preserve-3d"
-              >
-                <div className="translate-z-md space-y-5">
-                  <h5 className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider">// Doğrudan İletişim</h5>
-                  
-                  <div className="space-y-3">
                     <div>
-                      <span className="text-[10px] text-zinc-500 block uppercase font-mono">E-posta adresi</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="font-mono text-xs text-primary font-semibold">E-Ticaret / Gıda</span>
+                        <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-primary transition-colors" />
+                      </div>
+                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-primary transition-colors">Han Yöresel Lezzetler</h4>
+                      <p className="text-xs text-text-muted mt-2 leading-relaxed">Özel yöresel ürünlerin dijital vitrini ve sipariş koordinasyon kanalı.</p>
+                    </div>
+                    <div className="mt-6 flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-primary-fixed-dim">Next.js &amp; Tailwind</span>
+                    </div>
+                  </a>
+
+                  {/* Item 2: Bizim Kafe Çayko */}
+                  <a 
+                    href="https://bizimkafecayko.vercel.app/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="p-6 rounded-xl bg-surface-container-low border border-white/[0.06] hover:bg-surface-bright transition-all group flex flex-col justify-between shadow-md"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="font-mono text-xs text-secondary font-semibold">Gastronomi / Menü</span>
+                        <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-secondary transition-colors" />
+                      </div>
+                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-secondary transition-colors">Bizim Kafe Çayko</h4>
+                      <p className="text-xs text-text-muted mt-2 leading-relaxed">Kafe içi dinamik QR menü entegrasyonu ve dijital rezervasyon platformu.</p>
+                    </div>
+                    <div className="mt-6 flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-secondary">React &amp; Firebase</span>
+                    </div>
+                  </a>
+
+                  {/* Item 3: Müşteri Portali */}
+                  <a 
+                    href="https://deft-cucurucho-cf2b29.netlify.app/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="p-6 rounded-xl bg-surface-container-low border border-white/[0.06] hover:bg-surface-bright transition-all group flex flex-col justify-between shadow-md"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="font-mono text-xs text-tertiary font-semibold">B2B Portal</span>
+                        <ExternalLink className="w-4 h-4 text-text-dim group-hover:text-tertiary transition-colors" />
+                      </div>
+                      <h4 className="font-display text-base font-semibold text-on-surface group-hover:text-tertiary transition-colors">Müşteri Portali</h4>
+                      <p className="text-xs text-text-muted mt-2 leading-relaxed">Hızlı ve hafif erişimli müşteri destek ve hesap kontrol arabirimi.</p>
+                    </div>
+                    <div className="mt-6 flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded bg-surface-container font-mono text-[11px] text-tertiary">HTML, CSS &amp; JS</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </section>
+
+            {/* CULTURE & ART (KÜLTÜR VE SANAT) SECTION */}
+            <section id="kultur-sanat" className="relative scroll-mt-24 reveal">
+              <div className="mb-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// EDEBİYAT &amp; KÜLTÜR</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Kültür ve Sanat</h2>
+                <p className="text-sm text-text-muted mt-1">Edebi çalışmalarım, kültürel projelerim ve yayımlanmış eserlerim</p>
+              </div>
+
+              {/* Book Spotlight Feature Banner */}
+              <div className="rounded-2xl bg-surface-container-low border border-white/[0.08] p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+                <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-accent-violet-glow blur-[100px] pointer-events-none"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                  
+                  {/* Book Cover Column */}
+                  <div className="lg:col-span-4 flex justify-center">
+                    <div className="relative group">
+                      <div className="absolute -inset-2 bg-gradient-to-b from-primary/30 to-secondary/30 rounded-2xl blur-xl group-hover:blur-2xl transition-all"></div>
+                      <div className="relative w-56 sm:w-64 h-80 sm:h-96 rounded-xl overflow-hidden shadow-2xl bg-surface-container-lowest border border-white/[0.08]">
+                        <Image 
+                          src="/filistine-vefasizlik.jpg" 
+                          alt="Filistin'e Vefasızlık" 
+                          width={256} 
+                          height={384} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Book Narrative Info Column */}
+                  <div className="lg:col-span-8 flex flex-col space-y-6">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="px-3 py-1 rounded-full bg-primary-container/20 border border-primary/30 text-primary font-mono text-xs font-semibold">
+                        Şiir Kitabı / Kasım 2024
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-surface-container border border-white/[0.06] text-text-muted font-mono text-xs">
+                        Yazar: Ahmet Yasin Aktürk
+                      </span>
+                    </div>
+
+                    <h3 className="font-display text-3xl font-bold text-on-surface">
+                      Filistin'e Vefasızlık
+                    </h3>
+
+                    <p className="text-base text-on-surface-variant leading-relaxed">
+                      Filistin'de yaşanan insani dramı, Gazze'deki direnişi ve İslam coğrafyasının bu zulüm karşısındaki sessizliğini mercek altına alan edebi bir çığlık. Eserdeki şiirler, Mescid-i Aksa'nın ve Filistin halkının yalnızlığını, Müslüman toplumların "vefasızlığını" ve duyarsızlığını sarsıcı bir dille ele almaktadır.
+                    </p>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      Bu eser, sadece edebi bir duruş sergilemekle kalmayıp aynı zamanda toplumsal bir farkındalık ve somut bir dayanışma amacı taşımaktadır.
+                    </p>
+
+                    {/* Donation Cause Badge */}
+                    <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/20 backdrop-blur-md flex items-center gap-3 shadow-inner">
+                      <span className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+                      <p className="font-mono text-xs text-emerald-300 font-medium">
+                        Kitabın satışından elde edilen tüm gelir Filistin'e yardım amaçlı bağışlanmaktadır.
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="pt-2 flex flex-wrap gap-4">
                       <a 
-                        href="mailto:ahmet.41yasin@gmail.com" 
-                        className="text-xs sm:text-sm font-mono text-zinc-300 hover:text-accent-purple transition-colors flex items-center gap-1.5 mt-0.5"
+                        href="https://cinius.shop/urun/filistine-vefasizlik/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-on-surface font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
                       >
-                        <Mail className="w-3.5 h-3.5" />
-                        ahmet.41yasin@gmail.com
+                        <ExternalLink className="w-4 h-4 text-primary" />
+                        <span>Cinius Shop'ta İncele</span>
+                      </a>
+                      <a 
+                        href="https://1000kitap.com/kitap/filistine-vefasizlik--458245" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface-container-high border border-white/[0.08] hover:bg-surface-bright text-on-surface font-display text-xs font-semibold transition-all hover:scale-105 shadow-md"
+                      >
+                        <ExternalLink className="w-4 h-4 text-secondary" />
+                        <span>1000Kitap'ta İncele</span>
                       </a>
                     </div>
-                    
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+            {/* SKILLS / YETKİNLİKLER SECTION */}
+            <section id="yetkinlikler" className="relative scroll-mt-24 reveal">
+              <div className="mb-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-secondary font-semibold">// STACK &amp; CAPABILITIES</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">Yetkinlikler</h2>
+                <p className="text-sm text-text-muted mt-1">Kullandığım Teknolojiler ve Üretim Araçları</p>
+              </div>
+
+              {/* Categorized Tech Matrix */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                {/* 1. Full-Stack Web Geliştirme */}
+                <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-primary font-mono text-sm font-bold">
+                        &lt;/&gt;
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-on-surface">Full-Stack Web Geliştirme</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-primary"></span>
+                        <span className="text-sm text-on-surface font-medium">React &amp; Next.js Arayüzleri</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-primary-container"></span>
+                        <span className="text-sm text-on-surface font-medium">Modern Tailwind CSS Arayüzleri</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-primary-fixed"></span>
+                        <span className="text-sm text-on-surface font-medium">Supabase &amp; Firebase Veritabanı</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
+                    <span>Modern Web Stack</span>
+                    <span className="text-primary font-semibold">99.9% Uptime Mindset</span>
+                  </div>
+                </div>
+
+                {/* 2. Yapay Zeka & Otomasyon */}
+                <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-secondary font-mono text-sm font-bold">
+                        AI
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-on-surface">Yapay Zeka &amp; Otomasyon</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                        <span className="text-sm text-on-surface font-medium">Prompt Engineering</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                        <span className="text-sm text-on-surface font-medium">Akıllı AI Agents Sistemleri</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-secondary-container"></span>
+                        <span className="text-sm text-on-surface font-medium">Autonomous Task Chains</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
+                    <span>AI Architecture</span>
+                    <span className="text-secondary font-semibold">LLMs &amp; Agents</span>
+                  </div>
+                </div>
+
+                {/* 3. AI Medya & Entegrasyonlar */}
+                <div className="p-7 rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl shadow-xl flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-surface-container border border-white/[0.08] flex items-center justify-center text-tertiary font-mono text-sm font-bold">
+                        *
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-on-surface">AI Medya &amp; Entegrasyonlar</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-tertiary"></span>
+                        <span className="text-sm text-on-surface font-medium">AI İçerik Üretimi (Görsel, İşitsel, Metin)</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+                        <span className="text-sm text-on-surface font-medium">API Entegrasyonları ve Süreç Otomasyonu</span>
+                      </div>
+                      <div className="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.04] flex items-center gap-3 group-hover:bg-surface-container transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                        <span className="text-sm text-on-surface font-medium">Multi-Modal Generative Workflows</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-text-dim font-mono text-xs">
+                    <span>Creative Synthesis</span>
+                    <span className="text-tertiary font-semibold">Generative Tech</span>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            {/* CONTACT / İLETİŞİM SECTION */}
+            <section id="iletisim" className="relative mb-24 scroll-mt-24 reveal">
+              <div className="mb-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">// CONNECT</span>
+                <h2 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-1">İletişim</h2>
+                <p className="text-sm text-text-muted mt-1">
+                  Yeni bir proje teklifi, geliştirme iş birliği veya sadece merhaba demek için bana mesaj gönderebilirsiniz. En kısa sürede geri dönüş sağlayacağım.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Form Alanı */}
+                <div className="lg:col-span-7 rounded-2xl bg-surface-container-low border border-white/[0.08] p-8 shadow-xl relative">
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="name">
+                          İsim Soyisim
+                        </label>
+                        <input 
+                          id="name" 
+                          required 
+                          type="text" 
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Ahmet Yılmaz" 
+                          className="w-full px-4 py-3 rounded-xl bg-surface-container-lowest border border-white/[0.08] text-on-surface placeholder:text-text-dim text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="email">
+                          E-posta Adresi
+                        </label>
+                        <input 
+                          id="email" 
+                          required 
+                          type="email" 
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="ornek@domain.com" 
+                          className="w-full px-4 py-3 rounded-xl bg-surface-container-lowest border border-white/[0.08] text-on-surface placeholder:text-text-dim text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+                        />
+                      </div>
+                    </div>
                     <div>
-                      <span className="text-[10px] text-zinc-500 block uppercase font-mono">Sosyal Kanallar</span>
-                      <div className="flex gap-3 mt-2.5 translate-z-sm">
+                      <label className="block font-mono text-xs text-text-muted uppercase tracking-wider mb-2" htmlFor="message">
+                        Mesajınız
+                      </label>
+                      <textarea 
+                        id="message" 
+                        required 
+                        rows={5} 
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Projenizden veya vizyonunuzdan bahsedin..." 
+                        className="w-full px-4 py-3 rounded-xl bg-surface-container-lowest border border-white/[0.08] text-on-surface placeholder:text-text-dim text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-inner resize-none"
+                      ></textarea>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-display text-sm font-semibold shadow-[0_0_20px_rgba(183,109,255,0.35)] hover:shadow-[0_0_30px_rgba(183,109,255,0.6)] hover:scale-105 transition-all disabled:opacity-50 cursor-pointer"
+                      >
+                        <span>{isSubmitting ? "Gönderiliyor..." : "Mesajı Gönder"}</span>
+                        <Send className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {formSubmitted && (
+                      <div className="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 font-mono text-xs flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        <span>Mesajınız başarıyla iletildi. En kısa sürede geri döneceğim!</span>
+                      </div>
+                    )}
+                  </form>
+                </div>
+
+                {/* Direct Contact Metadata Sidebar */}
+                <div className="lg:col-span-5 space-y-6">
+                  <div className="rounded-2xl bg-surface-glass border border-white/[0.08] backdrop-blur-xl p-8 shadow-xl relative overflow-hidden">
+                    <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-accent-cyan-glow blur-[80px]"></div>
+                    <span className="font-mono text-xs uppercase tracking-widest text-secondary font-bold block mb-4">
+                      // DOĞRUDAN İLETİŞİM
+                    </span>
+                    
+                    <div className="space-y-4 mb-8">
+                      <div>
+                        <span className="font-mono text-xs text-text-dim block">E-POSTA ADRESİ</span>
+                        <a 
+                          href="mailto:ahmet.41yasin@gmail.com" 
+                          className="font-display text-base text-secondary hover:text-primary transition-colors flex items-center gap-2 mt-1"
+                        >
+                          <span>ahmet.41yasin@gmail.com</span>
+                        </a>
+                      </div>
+                      <div>
+                        <span className="font-mono text-xs text-text-dim block">KONUM &amp; ZAMAN DİLİMİ</span>
+                        <p className="text-sm text-on-surface mt-1 flex items-center gap-2">
+                          <span>Eskişehir / Türkiye (UTC+3)</span>
+                        </p>
+                      </div>
+                      <div>
+                        <span className="font-mono text-xs text-text-dim block">FIRTIINA AI KULLANICI DESTEĞİ</span>
+                        <Link 
+                          href="/destek" 
+                          className="text-xs text-primary hover:underline flex items-center gap-1.5 mt-1 font-mono"
+                        >
+                          <LifeBuoy className="w-3.5 h-3.5" />
+                          <span>Destek Merkezi Sayfası &rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-white/[0.06]">
+                      <span className="font-mono text-xs text-text-dim block mb-3 uppercase tracking-wider">Sosyal Kanallar</span>
+                      <div className="flex items-center gap-3">
                         <a 
                           href="https://github.com/ahmetyasinaktrkoseakut-ui" 
                           target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          rel="noreferrer" 
+                          className="p-3 rounded-xl bg-surface-container border border-white/[0.08] hover:bg-surface-bright text-on-surface hover:text-primary transition-all shadow-md"
                           aria-label="GitHub"
                         >
-                          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         </a>
                         <a 
                           href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" 
                           target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          rel="noreferrer" 
+                          className="p-3 rounded-xl bg-surface-container border border-white/[0.08] hover:bg-surface-bright text-on-surface hover:text-secondary transition-all shadow-md"
                           aria-label="LinkedIn"
                         >
-                          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         </a>
                         <a 
                           href="https://www.instagram.com/ahmet_y_akturk_61/" 
                           target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="p-2.5 rounded-lg bg-zinc-900 border border-zinc-800/80 text-zinc-400 hover:text-white transition-all"
+                          rel="noreferrer" 
+                          className="p-3 rounded-xl bg-surface-container border border-white/[0.08] hover:bg-surface-bright text-on-surface hover:text-primary-fixed transition-all shadow-md"
                           aria-label="Instagram"
                         >
-                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
                         </a>
                       </div>
                     </div>
                   </div>
+
+                  {/* Availability Micro-Card */}
+                  <div className="p-5 rounded-2xl bg-surface-container-high/40 border border-white/[0.08] backdrop-blur-md flex items-center justify-between shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <div>
+                        <span className="font-mono text-xs text-on-surface font-semibold block">Yeni Projeler İçin Açık</span>
+                        <span className="text-xs text-text-dim">Web, Mobil &amp; AI Çözümleri</span>
+                      </div>
+                    </div>
+                    <a 
+                      className="px-3.5 py-1.5 rounded-lg bg-surface-container border border-white/[0.08] font-mono text-xs text-secondary hover:bg-secondary hover:text-on-secondary transition-all" 
+                      href="mailto:ahmet.41yasin@gmail.com"
+                    >
+                      Görüşelim
+                    </a>
+                  </div>
                 </div>
-              </ThreeDCard>
-            </div>
+
+              </div>
+            </section>
 
           </div>
-        </section>
-
+        </div>
       </main>
 
-      {/* Alt Bilgi (Footer) */}
-      <footer className="py-12 mt-10 relative z-10 text-center">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col items-center justify-center">
-          <p className="text-xs sm:text-sm font-medium tracking-wider text-zinc-500 uppercase font-mono">
-            © 2026 Ahmet Yasin Aktürk. Tüm hakları saklıdır.
-          </p>
+      {/* Footer */}
+      <footer className="relative z-10 w-full bg-surface-container-lowest border-t border-white/[0.08] mt-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-display text-base font-bold text-on-surface">AHMET YASİN AKTÜRK</span>
+                <span className="px-2 py-0.5 rounded-full bg-surface-container-high border border-white/[0.06] font-mono text-[10px] text-tertiary">Portfolio</span>
+              </div>
+              <p className="text-xs text-text-dim">Web - Mobil Uygulama Geliştirici &amp; Yapay Zeka İçerik Üreticisi</p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-text-muted">
+              <a className="hover:text-on-surface transition-colors" href="#biyografi">Biyografi</a>
+              <a className="hover:text-on-surface transition-colors" href="#calismalarim">Çalışmalarım</a>
+              <a className="hover:text-on-surface transition-colors" href="#kultur-sanat">Kültür &amp; Sanat</a>
+              <a className="hover:text-on-surface transition-colors" href="#yetkinlikler">Yetkinlikler</a>
+              <a className="hover:text-on-surface transition-colors" href="#iletisim">İletişim</a>
+              <Link className="hover:text-secondary transition-colors" href="/destek">Destek</Link>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://github.com/ahmetyasinaktrkoseakut-ui" target="_blank" rel="noreferrer">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" target="_blank" rel="noreferrer">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="https://www.instagram.com/ahmet_y_akturk_61/" target="_blank" rel="noreferrer">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-text-dim">
+            <p>&copy; 2026 Ahmet Yasin Aktürk. Tüm hakları saklıdır.</p>
+            <p className="text-text-muted">Next-Gen Portfolio &amp; Digital Experience</p>
+          </div>
         </div>
       </footer>
 
     </div>
   );
 }
-// Trigger Vercel Build - Public Repository
-
