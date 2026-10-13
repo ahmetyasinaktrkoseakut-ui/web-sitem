@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: 'Ahmet Yasin Aktürk',
   description: 'Kullanıcı odaklı modern web platformları kuruyor, Next.js ve yapay zeka entegrasyonları ile yüksek performanslı dijital çözümler tasarlıyorum.',
   authors: [{ name: "Ahmet Yasin Aktürk" }],
-  keywords: ['Ahmet Yasin Aktürk', 'Full-Stack Geliştirici', 'Yapay Zeka', 'Next.js', 'React', 'Fırtına AI', 'Yapay Zeka Üreticisi', 'Eskişehir Geliştirici', 'React Developer', 'AI Developer'],
+  keywords: ['Ahmet Yasin Aktürk', 'Yapay Zeka Özel Ders', 'Yapay Zeka Eğitimi', 'Prompt Mühendisliği', 'Full-Stack Geliştirici', 'Yapay Zeka', 'Next.js', 'React', 'Fırtına AI', 'Eskişehir Özel Ders', 'Online Yapay Zeka Kursu', 'AI Developer'],
   robots: "index, follow",
   verification: {
     google: "iGYiogkYheT0pvWzNcstyb0ZYG-gW5ZjOT_pn0f6n68",

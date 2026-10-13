@@ -15,7 +15,8 @@ import {
   Cpu,
   Sparkles,
   Mail,
-  MapPin
+  MapPin,
+  Clock
 } from "lucide-react";
 
 export default function Home() {
@@ -107,6 +108,7 @@ export default function Home() {
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium">
             <a href="#biyografi" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Biyografi</a>
             <a href="#calismalarim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Çalışmalarım</a>
+            <Link href="/ozel-ders" className="px-3.5 py-1.5 text-secondary hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg font-medium">Özel Ders</Link>
             <a href="#kultur-sanat" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Kültür &amp; Sanat</a>
             <a href="#yetkinlikler" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">Yetkinlikler</a>
             <a href="#iletisim" className="px-3.5 py-1.5 text-on-surface-variant hover:text-white hover:bg-surface-container/60 transition-colors rounded-lg">İletişim</a>
@@ -150,6 +152,7 @@ export default function Home() {
           <div className="lg:hidden border-b border-white/[0.08] bg-surface-container-lowest/95 backdrop-blur-xl px-6 py-5 space-y-4 text-sm font-medium">
             <a href="#biyografi" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Biyografi</a>
             <a href="#calismalarim" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Çalışmalarım</a>
+            <Link href="/ozel-ders" onClick={() => setIsMobileMenuOpen(false)} className="block text-secondary hover:text-white">Yapay Zeka Özel Ders</Link>
             <a href="#kultur-sanat" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Kültür &amp; Sanat</a>
             <a href="#yetkinlikler" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">Yetkinlikler</a>
             <a href="#iletisim" onClick={() => setIsMobileMenuOpen(false)} className="block text-on-surface hover:text-primary">İletişim</a>
@@ -454,6 +457,61 @@ export default function Home() {
                       <span className="px-2.5 py-1 rounded bg-surface-container text-[11px] text-tertiary">HTML, CSS &amp; JS</span>
                     </div>
                   </a>
+                </div>
+              </div>
+            </section>
+
+            {/* SPECIAL LESSON / ÖZEL DERS SPOTLIGHT BANNER */}
+            <section className="relative rounded-2xl bg-gradient-to-br from-surface-container-low via-surface-glass to-surface-container-lowest border border-white/[0.08] p-8 lg:p-12 shadow-2xl relative overflow-hidden reveal">
+              <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-accent-cyan-glow blur-[100px] pointer-events-none"></div>
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-white/[0.08] text-xs font-semibold text-secondary">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Birebir Özel Ders &amp; Mentorluk
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+                    Uygulama Odaklı Yapay Zeka &amp; Yazılım Eğitimi
+                  </h3>
+                  <p className="text-sm text-text-muted leading-relaxed">
+                    Sıfırdan canlıya proje geliştirme odaklı; metin, görsel, video ve müzik üreten güncel yapay zeka araçlarıyla (LLM'ler, Google Veo, Suno vb.) online veya Eskişehir'de yüz yüze birebir eğitim veriyorum.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-text-dim">
+                    <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-primary" /> Online / Eskişehir</span>
+                    <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-secondary" /> 60 Dk Seanslar</span>
+                    <span className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> %100 Proje Odaklı</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto shrink-0">
+                  <Link 
+                    href="/ozel-ders" 
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-display text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all text-center"
+                  >
+                    <span>Ders Sayfasını İncele</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <div className="flex items-center gap-2">
+                    <a 
+                      href="https://www.ozeldersalani.com/ogretmen7ynhme" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container border border-blue-500/30 hover:border-blue-400 text-xs font-semibold text-white transition-all text-center"
+                    >
+                      <span>Özel Ders Alanı</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                    </a>
+                    <a 
+                      href="https://www.superprof.com.tr/ileri-duzey-yapay-zeka-urun-gelistiricisiyim-yapay-zeka-ile-gorsel-video-muzik-yazilim-gelistirme-uygulama-odakli.html" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-container border border-rose-500/30 hover:border-rose-400 text-xs font-semibold text-white transition-all text-center"
+                    >
+                      <span>Superprof</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-rose-400" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </section>
@@ -837,6 +895,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-text-muted">
               <a className="hover:text-white transition-colors" href="#biyografi">Biyografi</a>
               <a className="hover:text-white transition-colors" href="#calismalarim">Çalışmalarım</a>
+              <Link className="hover:text-secondary transition-colors" href="/ozel-ders">Özel Ders</Link>
               <a className="hover:text-white transition-colors" href="#kultur-sanat">Kültür &amp; Sanat</a>
               <a className="hover:text-white transition-colors" href="#yetkinlikler">Yetkinlikler</a>
               <a className="hover:text-white transition-colors" href="#iletisim">İletişim</a>
