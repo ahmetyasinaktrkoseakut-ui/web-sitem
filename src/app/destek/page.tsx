@@ -76,15 +76,15 @@ export default function DestekPage() {
                     <div>
                       <span className="text-xs text-zinc-500 font-mono block uppercase">✉️ E-posta Adresimiz</span>
                       <a 
-                        href="mailto:ahmetyasinakturk@gmail.com" 
+                        href="mailto:ahmet.41yasin@gmail.com" 
                         className="text-base sm:text-lg font-mono text-white hover:text-accent-purple transition-colors font-semibold"
                       >
-                        ahmetyasinakturk@gmail.com
+                        ahmet.41yasin@gmail.com
                       </a>
                     </div>
                   </div>
                   <a 
-                    href="mailto:ahmetyasinakturk@gmail.com" 
+                    href="mailto:ahmet.41yasin@gmail.com" 
                     className="px-4 py-2.5 rounded-lg bg-zinc-100 hover:bg-zinc-200 text-zinc-950 text-xs font-medium transition-all text-center flex items-center justify-center gap-2 shadow-md"
                   >
                     <Mail className="w-3.5 h-3.5" />
