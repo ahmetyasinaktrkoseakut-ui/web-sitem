@@ -239,7 +239,7 @@ export default function Home() {
                 </a>
 
                 <a 
-                  href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                  href="https://www.instagram.com/ahmet_y_akturk/" 
                   target="_blank" 
                   rel="noreferrer" 
                   className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-high/80 hover:bg-surface-bright text-on-surface font-medium text-xs sm:text-sm transition-all hover:scale-105 shadow-md border border-white/[0.08]"
@@ -846,7 +846,7 @@ export default function Home() {
                           <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                         </a>
                         <a 
-                          href="https://www.instagram.com/ahmet_y_akturk_61/" 
+                          href="https://www.instagram.com/ahmet_y_akturk/" 
                           target="_blank" 
                           rel="noreferrer" 
                           className="p-3 rounded-xl bg-surface-container border border-white/[0.08] hover:bg-surface-bright text-on-surface hover:text-primary-fixed transition-all shadow-md"
@@ -909,7 +909,7 @@ export default function Home() {
               <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-all" href="https://www.linkedin.com/in/ahmet-yasin-akt%C3%BCrk-a66644411/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </a>
-              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="https://www.instagram.com/ahmet_y_akturk_61/" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <a className="w-9 h-9 rounded-lg bg-surface-container border border-white/[0.06] flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all" href="https://www.instagram.com/ahmet_y_akturk/" target="_blank" rel="noreferrer" aria-label="Instagram">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"></rect><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"></circle><circle cx="17.5" cy="6.5" r="1.5"></circle></svg>
               </a>
             </div>
